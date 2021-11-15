@@ -12,10 +12,10 @@ function* fetchRecipes() {
     }
 }
 
+
 //watching for functions 
 function* homeSaga() {
     yield takeLatest('FETCH_RECIPES', fetchRecipes)
-
 }
 
 

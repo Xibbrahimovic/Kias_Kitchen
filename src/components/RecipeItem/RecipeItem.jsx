@@ -29,7 +29,6 @@ function RecipeItem({recipe}){
             src={recipe.image}
             alt={recipe.name}
             />
-
         </div>
     )
 }
