@@ -1,5 +1,6 @@
 import React from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
+
+import { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
 import RecipeItem from '../RecipeItem/RecipeItem';
@@ -13,14 +14,17 @@ function Home() {
   const dispatch = useDispatch();
 
   //allows recipes store to be accessed in page -- need for fetching and displaying 
-  const recipes = useSelector((store) => store.recipes);
+  const home = useSelector((store) => store.home);
 
+  useEffect(() => {
+    dispatch({type: 'FETCH_RECIPES'});
+  }, []);
   return (
         // INSERT Header for Home page here
     <div>
     <div className="container">
       {/* Loops through recipes store and fetches all the recipes */}
-      {recipes.map(recipe => {
+      {home.map(recipe => {
         return (
           <RecipeItem
           key={recipe.id}
@@ -33,6 +37,5 @@ function Home() {
     </div>
   );
 }
-{/* <LogOutButton className="btn" /> */}
-// this allows us to use <App /> in index.js
+
 export default Home;

@@ -21,7 +21,7 @@ function RecipeItem({recipe}){
 
 
     return(
-        <container
+        <div
         onClick={toDetails}
         >
             <img
@@ -30,6 +30,8 @@ function RecipeItem({recipe}){
             alt={recipe.name}
             />
 
-        </container>
+        </div>
     )
 }
+
+export default RecipeItem;
