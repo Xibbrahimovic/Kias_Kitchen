@@ -2,10 +2,11 @@ import axios from "axios";
 import { put, takeLatest } from 'redux-saga/effects';
 
 
-function* selectedRecipe() {
+function* storeDetails(action) {
     try {
-        const response = yield axios.get('/api/details');
-        yield put({ type: 'SET_DETAILS', payload: response.data });
+        const response = yield axios.get(`/api/details?id=${action.payload.id}`);
+        yield put({ type: 'SET_DETAILS_ID', payload: response.data });
+        console.log(response);
     } catch (err) {
         yield put({ type: 'SET_DETAILS_ERROR' });
         console.log(err);
@@ -13,9 +14,9 @@ function* selectedRecipe() {
 }
 
 //watching for functions 
-function* detailsSaga() {
-    yield takeLatest('STORE_DETAILS', selectedRecipe);
+function* details() {
+    yield takeLatest('STORE_DETAILS', storeDetails);
 }
 
 
-export default detailsSaga;
+export default details;

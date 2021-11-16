@@ -16,10 +16,10 @@ function RecipeItem({recipe}){
         //dispatching recipe as object to Selected Reducer
         dispatch({type: "STORE_DETAILS", payload: recipe})
         //navigate to details page
-        // history.push("/details")
+        history.push("/details")
     }
 
-
+console.log("This is the recipe sent to reducer",recipe);
     return(
         <div
         onClick={toDetails}
