@@ -24,8 +24,33 @@ function* fetchUser() {
   }
 }
 
+function* fetchUserRecipes() {
+  try {
+      const response = yield axios.get(`/api/user/recipes`);
+      yield put({ type: 'SET_USER_RECIPES', payload: response.data });
+      console.log(response);
+  } catch (err) {
+      yield put({ type: 'SET_USER_RECIPES_ERROR' });
+      console.log(err);
+  }
+}
+
+function* deleteRecipe(action){
+try {
+  const response = yield axios.delete(`/api/user/${action.payload.id}`);
+  console.log(action.payload);
+  console.log(response);
+  yield put({type: 'FETCH_USER_RECIPES'})
+} catch (error) {
+  console.log('Error in deleteRecipe', err);
+  yield put({type: 'DELETE_ERROR' })
+}
+};
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('FETCH_USER_RECIPES', fetchUserRecipes);
+  yield takeLatest('DELETE_RECIPE', deleteRecipe);
 }
 
 export default userSaga;

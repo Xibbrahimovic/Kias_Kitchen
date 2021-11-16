@@ -5,6 +5,7 @@ import userSaga from './user.saga';
 import homeSaga from './home.saga';
 import detailsSaga from './details.saga';
 
+
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
