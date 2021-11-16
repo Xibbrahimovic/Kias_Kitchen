@@ -21,10 +21,10 @@ function Details() {
     // INSERT Header for Home page here
     <div>
       <div className="container">
-        <img src={recipe.image} alt={recipe.name} />
+        <img src={recipe.image} alt={recipe.name} height="300px" />
         <div>
             <h2>{recipe.name}</h2>
-            <p>{recipe.time}</p>
+            <p>{recipe.time} minutes</p>
             <h2>Overview</h2>
             <p>{recipe.overview}</p>
             <h2>Ingredients</h2>
