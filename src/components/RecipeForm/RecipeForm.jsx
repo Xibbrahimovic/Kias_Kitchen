@@ -9,6 +9,7 @@ function RecipeForm(){
 
     //Initial state is an object, with all the different input values set to empty
     let [newRecipe, setRecipe] = useState({
+        image:'',
         name: '',
         time: '',
         overview: '',
@@ -28,12 +29,21 @@ function RecipeForm(){
         dispatch({type: 'ADD_RECIPE', payload: newRecipe})
     }
 
+    console.log(newRecipe);
+
     return(
         <div>
             <h2>Add your recipe to the kitchen!</h2>
             <form 
             className="recipeForm"
             onSubmit={addNewRecipe}>
+                <div>
+                <input
+                    placeholder="Upload your photo here! "
+                    type="url"
+                    value={newRecipe.image}
+                    onChange={(event) => handleInputChange(event, 'image')}/>
+                </div>
                 <div>
                 <input
                     placeholder="Recipe Name "
@@ -75,7 +85,7 @@ function RecipeForm(){
                 <button 
                 className= "btn"
                 type='submit' 
-                value='Add New Plant'>Add New Recipe!</button>
+                value='Add New Plant'>Submit Recipe!</button>
             </form>
         </div>
     )

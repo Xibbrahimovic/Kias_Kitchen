@@ -50,6 +50,28 @@ router.post("/register", (req, res, next) => {
     });
 });
 
+router.post("/recipe", (req, res) => {
+  console.log('Req.body',req.body);
+  console.log('req.user', req.user);
+
+  const insertRecipeQuery = `
+  INSERT INTO "recipes" ("image", "name", "time", "overview", "ingredients", "instructions", "user_id")
+  VALUES ($1, $2, $3, $4, $5, $6, $7);`
+
+  //inserted values from the form 
+  let values = [req.body.image, req.body.name, req.body.time, req.body.overview, req.body.ingredients, req.body.instructions, req.user.id]
+
+  pool.query(insertRecipeQuery, values)
+  .then(result => {
+    console.log('Results', result.rows);
+    res.sendStatus(201);
+  })
+  .catch(error => {
+    console.log('error in query', error);
+    res.sendStatus(500);
+  })
+})
+
 
 router.delete('/:id', (req, res) => {
   console.log('user is', req.user.id)

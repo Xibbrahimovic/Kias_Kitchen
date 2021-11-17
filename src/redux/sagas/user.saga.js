@@ -36,22 +36,35 @@ function* fetchUserRecipes() {
   }
 }
 
+function* addRecipe(action){
+  try {
+    yield axios.post('/api/user/recipe', action.payload);
+    yield put({type: 'FETCH_RECIPES'})
+  } catch (error) {
+    console.log('Error in add recipes saga', error);
+  }
+};
+
+
 function* deleteRecipe(action){
 try {
   const response = yield axios.delete(`/api/user/${action.payload}`);
   console.log(action.payload);
   console.log(response);
   yield put({type: 'FETCH_USER_RECIPES'})
-} catch (err) {
-  console.log('Error in deleteRecipe', err);
+} catch (error) {
+  console.log('Error in deleteRecipe', error);
   yield put({type: 'DELETE_ERROR' })
 }
 };
 
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeLatest('FETCH_USER_RECIPES', fetchUserRecipes);
+  yield takeLatest('ADD_RECIPE', addRecipe);
   yield takeLatest('DELETE_RECIPE', deleteRecipe);
+  
 }
 
 export default userSaga;
