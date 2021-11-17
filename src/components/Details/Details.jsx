@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-
-import { useSelector} from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 
 function Details() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -10,6 +9,7 @@ function Details() {
   //allows recipes store to be accessed in page -- need for fetching and displaying
 //   const dispatch = useDispatch();
 
+  const history = useHistory();
   const recipe = useSelector((store) => store.details);
 
   console.log(recipe);
@@ -20,6 +20,8 @@ function Details() {
   return (
     // INSERT Header for Home page here
     <div>
+      <button
+      onClick={() => {history.push('/home')}}>BACK</button>
       <div className="container">
         <img src={recipe.image} alt={recipe.name} height="300px" />
         <div>

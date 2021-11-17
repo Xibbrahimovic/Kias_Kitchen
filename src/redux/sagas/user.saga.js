@@ -13,6 +13,7 @@ function* fetchUser() {
     // allow the server session to recognize the user
     // If a user is logged in, this will return their information
     // from the server session (req.user)
+
     const response = yield axios.get('/api/user', config);
 
     // now that the session has given us a user object
@@ -37,11 +38,11 @@ function* fetchUserRecipes() {
 
 function* deleteRecipe(action){
 try {
-  const response = yield axios.delete(`/api/user/${action.payload.id}`);
+  const response = yield axios.delete(`/api/user/${action.payload}`);
   console.log(action.payload);
   console.log(response);
   yield put({type: 'FETCH_USER_RECIPES'})
-} catch (error) {
+} catch (err) {
   console.log('Error in deleteRecipe', err);
   yield put({type: 'DELETE_ERROR' })
 }
