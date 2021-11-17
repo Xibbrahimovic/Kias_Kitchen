@@ -13,9 +13,22 @@ function* fetchRecipes() {
 }
 
 
+function* fetchRatings() {
+    try {
+        const response = yield axios.get('/api/home/ratings');
+        yield put({ type: 'SET_RATINGS', payload: response.data });
+    } catch (err) {
+        yield put({ type: 'FETCH_RATINGS_ERROR' });
+        console.log(err);
+    }
+}
+
+
+
 //watching for functions 
 function* homeSaga() {
     yield takeLatest('FETCH_RECIPES', fetchRecipes)
+    yield takeLatest('FETCH_RATINGS', fetchRatings);
 }
 
 
