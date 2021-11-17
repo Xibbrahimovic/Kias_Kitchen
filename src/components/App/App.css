@@ -113,3 +113,9 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+
+.recipeForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

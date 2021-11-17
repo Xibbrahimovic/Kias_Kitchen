@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Details from '../Details/Details';
 import Home from '../Home/Home';
+import RecipeForm from '../RecipeForm/RecipeForm';
 
 import './App.css';
 
@@ -67,6 +68,14 @@ function App() {
           path="/home">
             <Home/>
           </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/form"
+          >
+            <RecipeForm />
+          </ProtectedRoute>
+
 
           <Route
             exact
