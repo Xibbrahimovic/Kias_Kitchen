@@ -16,13 +16,10 @@ function Home() {
 
   //allows recipes store to be accessed in page -- need for fetching and displaying 
   const home = useSelector((store) => store.home);
-  const ratings = useSelector((store)=> store.ratings);
 
   useEffect(() => {
-    dispatch({type: 'FETCH_RECIPES'}),
-    dispatch({type: 'FETCH_RATINGS'}
-    );
-  }, []);
+    dispatch({type: 'FETCH_RECIPES'})
+}, []);
   return (
         // INSERT Header for Home page here
     <div>
@@ -33,7 +30,6 @@ function Home() {
           <RecipeItem
           key={recipe.id}
           recipe={recipe}
-          ratings={ratings}
           />
         )
       })}

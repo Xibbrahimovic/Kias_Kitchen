@@ -10,7 +10,8 @@ const {
 
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('in /api/home');
-    let queryText = `SELECT * FROM "recipes";`;
+    let queryText = `SELECT * FROM "recipes"
+    LEFT JOIN "ratings" ON ratings.recipes_id = recipes.id;`;
 
     pool
     .query(queryText)

@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import { useEffect } from 'react';
 
 //EXTRA MUI AT THE END 
 import Card from "@mui/material/Card";
@@ -8,13 +9,12 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 
-function RecipeItem({recipe, ratings}){
+function RecipeItem({recipe}){
     const dispatch = useDispatch();
     const history = useHistory();
-
     const toDetails = () => {
-        //dispatching recipe as object to Selected Reducer
-        dispatch({type: "STORE_DETAILS", payload: recipe})
+        //dispatching recipe as object to details reducer
+        dispatch({type: "STORE_DETAILS", payload: recipe}),
         //navigate to details page
         history.push("/details")
     }
@@ -47,15 +47,6 @@ console.log("This is the recipe sent to reducer",recipe);
                 </CardContent>
             </CardActionArea>
         </Card>
-        // <div
-        // onClick={toDetails}
-        // >
-        //     <img
-        //     height="300"
-        //     src={recipe.image}
-        //     alt={recipe.name}
-        //     />
-        // </div>
     )
 }
 

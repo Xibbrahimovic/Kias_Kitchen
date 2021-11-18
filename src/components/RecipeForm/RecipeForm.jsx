@@ -6,16 +6,17 @@ import { useHistory } from "react-router";
 function RecipeForm(){
     const dispatch = useDispatch();
 
-
-    //Initial state is an object, with all the different input values set to empty
-    let [newRecipe, setRecipe] = useState({
+    let base = {
         image:'',
         name: '',
         time: '',
         overview: '',
         ingredients: '',
         instructions: ''
-    })
+    };
+
+    //Initial state is an object, with all the different input values set to empty
+    let [newRecipe, setRecipe] = useState(base);
 
     const handleInputChange = (event, property) => {
         console.log('event happened');
@@ -27,8 +28,8 @@ function RecipeForm(){
         event.preventDefault();
         //sends over new object to saga/server to process and send to DB
         dispatch({type: 'ADD_RECIPE', payload: newRecipe})
+        setRecipe(base);
     }
-
     console.log(newRecipe);
 
     return(
