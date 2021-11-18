@@ -2,9 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
+import { useParams } from "react-router";
 
-function RecipeForm(){
+function EditRecipe(){
     const dispatch = useDispatch();
+    const {recipe_id} = useParams();
+    const history = useHistory();
 
     let base = {
         image:'',
@@ -16,47 +19,48 @@ function RecipeForm(){
     };
 
     //Initial state is an object, with all the different input values set to empty
-    let [newRecipe, setRecipe] = useState(base);
+    let [myRecipe, editMyRecipe] = useState(base);
 
     const handleInputChange = (event, property) => {
         console.log('event happened');
         //spreading initial object and assigning values to associated key 
-        setRecipe({...newRecipe, [property]: event.target.value})
+        editMyRecipe({...myRecipe, [property]: event.target.value})
     }
 
-    const addNewRecipe = event => {
+    const updateRecipe = event => {
         event.preventDefault();
         //sends over new object to saga/server to process and send to DB
-        dispatch({type: 'ADD_RECIPE', payload: newRecipe})
-        setRecipe(base);
+        dispatch({type: 'EDIT_RECIPE', 
+        payload: {...myRecipe, recipe_id}})
+        history.push('/profile');
     }
-    console.log(newRecipe);
+    console.log(myRecipe);
 
     return(
         <div>
             <h2>Add your recipe to the kitchen!</h2>
             <form 
             className="recipeForm"
-            onSubmit={addNewRecipe}>
+            onSubmit={updateRecipe}>
                 <div>
                 <input
                     placeholder="Upload your photo here! "
                     type="url"
-                    value={newRecipe.image}
+                    value={myRecipe.image}
                     onChange={(event) => handleInputChange(event, 'image')}/>
                 </div>
                 <div>
                 <input
                     placeholder="Recipe Name "
                     type="text"
-                    value={newRecipe.name}
+                    value={myRecipe.name}
                     onChange={(event) => handleInputChange(event, 'name')}/>
                 </div>
                 <div>
                 <input
                     placeholder="Cook Time - How long will it take? (min)"
                     type="text"
-                    value={newRecipe.time}
+                    value={myRecipe.time}
                     onChange={(event) => handleInputChange(event, 'time')}/>
                 </div>
 
@@ -64,7 +68,7 @@ function RecipeForm(){
                 <input
                     placeholder="Overview - Sell your recipe, what is it about? ✨"
                     type="text"
-                    value={newRecipe.overview}
+                    value={myRecipe.overview}
                     onChange={(event) => handleInputChange(event, 'overview')}/>
                 </div>
 
@@ -72,7 +76,7 @@ function RecipeForm(){
                 <input
                     placeholder="Ingredients - What should i get from my kitchen? "
                     type="text"
-                    value={newRecipe.ingredients}
+                    value={myRecipe.ingredients}
                     onChange={(event) => handleInputChange(event, 'ingredients')}/>
                 </div>
 
@@ -80,16 +84,16 @@ function RecipeForm(){
                 <input
                     placeholder="Instructions - Now, what do I need to do? 1️⃣"
                     type="text"
-                    value={newRecipe.instructions}
+                    value={myRecipe.instructions}
                     onChange={(event) => handleInputChange(event, 'instructions')}/>
                 </div>
                 <button 
                 className= "btn"
                 type='submit' 
-                value='Add New Recipe'>Submit Recipe!</button>
+                value='Edit Recipe'>Submit Changes!</button>
             </form>
         </div>
     )
 }
 
-export default RecipeForm;
+export default EditRecipe;

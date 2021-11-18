@@ -58,13 +58,26 @@ try {
 }
 };
 
+function* editRecipe(action){
+  try {
+    const response = yield axios.put(`/api/user/edit/${action.payload.recipe_id}`, action.payload);
+    console.log(action.payload);
+    console.log(response);
+    yield put({type: 'FETCH_USER_RECIPES'})
+  } catch (error) {
+    console.log('Error in editRecipe', error);
+    yield put({type: 'EDIT_RECIPE_ERROR' })
+  }
+  };
+  
+
 
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeLatest('FETCH_USER_RECIPES', fetchUserRecipes);
   yield takeLatest('ADD_RECIPE', addRecipe);
   yield takeLatest('DELETE_RECIPE', deleteRecipe);
-  
+  yield takeLatest('EDIT_RECIPE', editRecipe);
 }
 
 export default userSaga;

@@ -2,9 +2,11 @@ import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import { useHistory } from 'react-router';
 
 function Profile() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const user = useSelector((store) => store.user);
 
@@ -25,7 +27,7 @@ function Profile() {
       <p>Your ID is: {user.id}</p>
       <br></br>
       <h5>Your Recipes List</h5>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>Name</th>
@@ -39,6 +41,7 @@ function Profile() {
               <td>{recipe.name}</td>
               {/* <td>{recipe.rating}</td> */}
               <td>{recipe.time}</td>
+              <button onClick={() => history.push(`/edit/${recipe.id}`)}>EDIT</button>
               <button onClick={() => dispatch({type: 'DELETE_RECIPE', payload: recipe.id})}>DELETE</button>
             </tr>
           ))}
@@ -50,5 +53,4 @@ function Profile() {
   );
 }
 
-// this allows us to use <App /> in index.js
 export default Profile;

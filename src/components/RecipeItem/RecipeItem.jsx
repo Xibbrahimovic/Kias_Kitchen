@@ -39,10 +39,16 @@ console.log("This is the recipe sent to reducer",recipe);
                         className="caption"
                         variant="caption">{recipe.name}</Typography>
                     <Typography
+                    sx={{
+                        mx: 5
+                    }}
                         className="caption"
-                        variant="caption">{recipe.time}</Typography>
+                        variant="caption">Cook Time: {recipe.time}</Typography>
                     <Typography
-                        className="caption"
+                    sx={{
+                        mx: 5
+                    }}
+                        className="rating"
                         variant="caption">{recipe.rating}</Typography>
                 </CardContent>
             </CardActionArea>

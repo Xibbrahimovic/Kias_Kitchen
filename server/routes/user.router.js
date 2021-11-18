@@ -72,6 +72,32 @@ router.post("/recipe", (req, res) => {
   })
 })
 
+router.put("/edit/:recipeId", (req, res) => {
+  console.log('Req.body',req.body);
+  console.log('req.user', req.user);
+  const recipeId = req.params.recipeId;
+  const updateRecipeQuery = `
+  UPDATE "recipes" 
+  SET "image"=$1, "name"=$2, "time"=$3, "overview"=$4, "ingredients"=$5, "instructions"=$6, "user_id"=$7
+  WHERE "id" = $8;`
+
+  //inserted values from the form 
+  let values = [req.body.image, req.body.name, req.body.time, req.body.overview, req.body.ingredients, req.body.instructions, req.user.id, recipeId]
+
+  pool.query(updateRecipeQuery, values)
+  .then(result => {
+    console.log('Results', result.rows);
+    res.sendStatus(201);
+  })
+  .catch(error => {
+    console.log('error in query', error);
+    res.sendStatus(500);
+  })
+})
+
+
+
+
 
 router.delete('/:id', (req, res) => {
   console.log('user is', req.user.id)
