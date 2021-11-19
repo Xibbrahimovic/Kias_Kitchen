@@ -30,8 +30,7 @@ function EditRecipe(){
     const updateRecipe = event => {
         event.preventDefault();
         //sends over new object to saga/server to process and send to DB
-        dispatch({type: 'EDIT_RECIPE', 
-        payload: {...myRecipe, recipe_id}})
+        dispatch({type: 'EDIT_RECIPE', payload: {...myRecipe, recipe_id}})
         history.push('/profile');
     }
     console.log(myRecipe);
@@ -39,6 +38,8 @@ function EditRecipe(){
     return(
         <div>
             <h2>Add your recipe to the kitchen!</h2>
+            <button
+            onClick={() => {history.push('/profile')}}>CANCEL</button>
             <form 
             className="recipeForm"
             onSubmit={updateRecipe}>

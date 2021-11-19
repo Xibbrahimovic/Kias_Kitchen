@@ -39,7 +39,7 @@ function Profile() {
           {userRecipes.map((recipe) => (
             <tr key={recipe.id}>
               <td>{recipe.name}</td>
-              {/* <td>{recipe.rating}</td> */}
+              <td>{userRecipes.rating}</td>
               <td>{recipe.time}</td>
               <button onClick={() => history.push(`/edit/${recipe.id}`)}>EDIT</button>
               <button onClick={() => dispatch({type: 'DELETE_RECIPE', payload: recipe.id})}>DELETE</button>

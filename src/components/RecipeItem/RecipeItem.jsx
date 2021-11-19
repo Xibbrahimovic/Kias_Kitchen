@@ -23,6 +23,9 @@ console.log("This is the recipe sent to reducer",recipe);
     return(
         <Card
             className="recipeCard"
+            style={{
+                backgroundColor: "red"
+            }}
             sx={{ maxWidth: 370,
                     mb: 1,}}
             onClick={toDetails}
