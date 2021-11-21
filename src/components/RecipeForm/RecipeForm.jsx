@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
+import BottomNav from "../BottomNav/BottomNav";
 
 function RecipeForm(){
     const dispatch = useDispatch();
@@ -88,6 +89,7 @@ function RecipeForm(){
                 type='submit' 
                 value='Add New Recipe'>Submit Recipe!</button>
             </form>
+            <BottomNav/>
         </div>
     )
 }

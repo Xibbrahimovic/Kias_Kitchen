@@ -30,21 +30,21 @@ function App() {
   const dispatch = useDispatch();
 
   const user = useSelector(store => store.user);
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: '#B7E9FF',
-      },
-      secondary: pink,
-    },
-  });
+  // const theme = createTheme({
+  //   palette: {
+  //     primary: {
+  //       main: '#B7E9FF',
+  //     },
+  //     secondary: pink,
+  //   },
+  // });
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
   return (
-    <ThemeProvider theme={theme}>
+    // <ThemeProvider theme={theme}>
     <Router>
       <div>
         <Nav />
@@ -148,7 +148,7 @@ function App() {
         {/* <Footer /> */}
       </div>
     </Router>
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 }
 

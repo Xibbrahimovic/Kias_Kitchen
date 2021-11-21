@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector,useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import {Link} from 'react-router-dom';
+import { Button } from "@mui/material";
 
 function Details() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -20,8 +23,10 @@ function Details() {
   return (
     // INSERT Header for Home page here
     <div>
-      <button
-      onClick={() => {history.push('/home')}}>BACK</button>
+      <Button
+      size="small"
+      onClick={() => {history.push('/home')}}
+      startIcon={<ArrowBackIosNewIcon/>}>BACK</Button>
       <div className="container">
         <img src={recipe.image} alt={recipe.name} height="300px" />
         <div>

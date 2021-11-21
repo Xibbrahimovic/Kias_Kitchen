@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
 import RecipeItem from '../RecipeItem/RecipeItem';
+import BottomNav from '../BottomNav/BottomNav';
 import './Home.css';
 
 
@@ -35,6 +36,7 @@ function Home() {
       })}
       
     </div>
+    <BottomNav/>
     </div>
   );
 }

@@ -24,7 +24,7 @@ console.log("This is the recipe sent to reducer",recipe);
         <Card
             className="recipeCard"
             style={{
-                backgroundColor: "red"
+                backgroundColor: ""
             }}
             sx={{ maxWidth: 370,
                     mb: 1,}}

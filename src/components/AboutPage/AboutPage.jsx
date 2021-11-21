@@ -1,4 +1,5 @@
 import React from 'react';
+import BottomNav from '../BottomNav/BottomNav';
 
 function AboutPage() {
   return (
@@ -15,8 +16,9 @@ of the people she loved. Often times, she
 has kept recipes to which were not always 
 originals, but shared with her to create new 
 memories together. </p>
-    <img src="public/images/pink-flowers-transparent-background-24.png" alt="flowerphoto"/>
+    <img src="../public/images/pink-flowers-transparent-background-24.png" alt="flowerphoto"/>
       </div>
+      <BottomNav/>
     </div>
   );
 }

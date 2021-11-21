@@ -3,6 +3,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import { useHistory } from 'react-router';
+import BottomNav from '../BottomNav/BottomNav';
 
 function Profile() {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ function Profile() {
       </table>
 
       <LogOutButton className="btn logoutBtn" />
+      <BottomNav/>
     </div>
   );
 }
