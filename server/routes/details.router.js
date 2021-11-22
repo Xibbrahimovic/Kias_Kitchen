@@ -9,7 +9,6 @@ const {
 
 
 router.get(`/`, rejectUnauthenticated, (req, res) => {
-    console.log(`in /api/details?id=${id}`);
     let queryText = `SELECT * FROM "recipes"
     WHERE id = $1;`;
 

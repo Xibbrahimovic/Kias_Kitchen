@@ -50,6 +50,7 @@ function Details() {
                 history.push(`/review/${recipe.id}`);
               }}
             />
+            
 
 
             <h2>Overview</h2>
