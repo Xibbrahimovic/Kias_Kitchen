@@ -72,6 +72,31 @@ router.post("/recipe", (req, res) => {
   })
 })
 
+router.post("/review/:recipeId", (req, res) => {
+  console.log('Req.body',req.body);
+  console.log('req.user', req.user);
+  const recipeId = req.params.recipeId;
+  console.log('This is the recipeId in router', recipeId);
+
+  const insertRecipeQuery = `
+  INSERT INTO "ratings" ("user_id", "recipes_id", "rating", "review")
+  VALUES ($1, $2, $3, $4);`
+
+  //inserted values from the form 
+  let values = [req.user.id, recipeId, req.body.newReview.rating, req.body.newReview.review]
+  console.log(values);
+  pool.query(insertRecipeQuery, values)
+  .then(result => {
+    console.log('Results', result.rows);
+    res.sendStatus(201);
+  })
+  .catch(error => {
+    console.log('error in query', error);
+    res.sendStatus(500);
+  })
+})
+
+
 router.put("/edit/:recipeId", (req, res) => {
   console.log('Req.body',req.body);
   console.log('req.user', req.user);

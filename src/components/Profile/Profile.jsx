@@ -3,7 +3,9 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import { useHistory } from 'react-router';
-import BottomNav from '../BottomNav/BottomNav';
+
+import BottomNav from '../BottomNav/BottomNav';import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
 
 function Profile() {
   const dispatch = useDispatch();

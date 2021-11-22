@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
-import { useEffect } from 'react';
+import { useHistory, useParams } from "react-router";
+import { useEffect, useState } from 'react';
 
 //EXTRA MUI AT THE END 
 import Card from "@mui/material/Card";
@@ -8,6 +8,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import Rating from '@mui/material/Rating';
 
 function RecipeItem({recipe}){
     const dispatch = useDispatch();
@@ -19,7 +20,9 @@ function RecipeItem({recipe}){
         history.push("/details")
     }
 
-console.log("This is the recipe sent to reducer",recipe);
+
+    console.log("This is the recipe sent to reducer",recipe);
+    
     return(
         <Card
             className="recipeCard"
@@ -28,10 +31,10 @@ console.log("This is the recipe sent to reducer",recipe);
             }}
             sx={{ maxWidth: 370,
                     mb: 1,}}
-            onClick={toDetails}
             key={recipe.id}>
             <CardActionArea>
                 <CardMedia
+                    onClick={toDetails}
                     component="img"
                     height="300"
                     src={recipe.image}
@@ -41,18 +44,18 @@ console.log("This is the recipe sent to reducer",recipe);
                     <Typography
                         className="caption"
                         variant="caption">{recipe.name}</Typography>
+                        
                     <Typography
                     sx={{
                         mx: 5
                     }}
                         className="caption"
-                        variant="caption">Cook Time: {recipe.time}</Typography>
-                    <Typography
-                    sx={{
-                        mx: 5
-                    }}
-                        className="rating"
-                        variant="caption">{recipe.rating}</Typography>
+                        variant="caption">Cook Time: {recipe.time} min</Typography>
+
+                <Rating 
+                    name="read-only" 
+                    value={recipe.recipe_rating} 
+                    readOnly />
                 </CardContent>
             </CardActionArea>
         </Card>

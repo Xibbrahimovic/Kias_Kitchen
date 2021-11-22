@@ -10,12 +10,21 @@ const {
 
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('in /api/home');
-    let queryText = `SELECT * FROM "recipes"
-    LEFT JOIN "ratings" ON ratings.recipes_id = recipes.id;`;
+    let queryText = `SELECT recipes.id,
+                    recipes.name,
+                    recipes.image,
+                    recipes.time,
+                    recipes.overview,
+                    recipes.ingredients, 
+                    recipes.instructions, 
+                    AVG(COALESCE(ratings.rating, 0))::NUMERIC(10,1) AS recipe_rating FROM "recipes"
+                LEFT JOIN "ratings" ON ratings.recipes_id = recipes.id
+                GROUP BY recipes.id;`;
 
     pool
     .query(queryText)
     .then((response) => {
+        console.log('This is the home get route',response);
         res.send(response.rows);
     })
     .catch((error) => {
@@ -24,19 +33,19 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 });//end router.get 
 
-router.get('/ratings', rejectUnauthenticated, (req, res) => {
-    console.log('in /api/home');
-    let queryText = `SELECT * FROM "ratings";`;
+// router.get('/ratings', rejectUnauthenticated, (req, res) => {
+//     console.log('in /api/home');
+//     let queryText = `SELECT * FROM "ratings";`;
 
-    pool
-    .query(queryText)
-    .then((response) => {
-        res.send(response.rows);
-    })
-    .catch((error) => {
-        console.log(`There was an error with the /api/home/ratings GET:`, error);
-        res.sendStatus(500);
-    });
-});//end router.get 
+//     pool
+//     .query(queryText)
+//     .then((response) => {
+//         res.send(response.rows);
+//     })
+//     .catch((error) => {
+//         console.log(`There was an error with the /api/home/ratings GET:`, error);
+//         res.sendStatus(500);
+//     });
+// });//end router.get 
 
 module.exports = router;

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
 import BottomNav from "../BottomNav/BottomNav";
+import { TextField } from "@mui/material";
 
 function RecipeForm(){
     const dispatch = useDispatch();
@@ -40,21 +41,21 @@ function RecipeForm(){
             className="recipeForm"
             onSubmit={addNewRecipe}>
                 <div>
-                <input
+                <TextField
                     placeholder="Upload your photo here! "
                     type="url"
                     value={newRecipe.image}
                     onChange={(event) => handleInputChange(event, 'image')}/>
                 </div>
                 <div>
-                <input
+                <TextField
                     placeholder="Recipe Name "
                     type="text"
                     value={newRecipe.name}
                     onChange={(event) => handleInputChange(event, 'name')}/>
                 </div>
                 <div>
-                <input
+                <TextField
                     placeholder="Cook Time - How long will it take? (min)"
                     type="text"
                     value={newRecipe.time}
@@ -62,7 +63,7 @@ function RecipeForm(){
                 </div>
 
                 <div>
-                <input
+                <TextField
                     placeholder="Overview - Sell your recipe, what is it about? ✨"
                     type="text"
                     value={newRecipe.overview}
@@ -70,7 +71,7 @@ function RecipeForm(){
                 </div>
 
                 <div>
-                <input
+                <TextField
                     placeholder="Ingredients - What should i get from my kitchen? "
                     type="text"
                     value={newRecipe.ingredients}
@@ -78,7 +79,7 @@ function RecipeForm(){
                 </div>
 
                 <div>
-                <input
+                <TextField
                     placeholder="Instructions - Now, what do I need to do? 1️⃣"
                     type="text"
                     value={newRecipe.instructions}

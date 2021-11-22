@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-import { ThemeProvider } from '@mui/material/styles';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
@@ -23,28 +22,21 @@ import Details from '../Details/Details';
 import Home from '../Home/Home';
 import RecipeForm from '../RecipeForm/RecipeForm';
 import EditRecipe from '../EditRecipe/EditRecipe';
+import ReviewForm from '../ReviewForm/ReviewForm';
 
 import './App.css';
+import { pink } from '@mui/material/colors';
+
 
 function App() {
   const dispatch = useDispatch();
 
   const user = useSelector(store => store.user);
-  // const theme = createTheme({
-  //   palette: {
-  //     primary: {
-  //       main: '#B7E9FF',
-  //     },
-  //     secondary: pink,
-  //   },
-  // });
-
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
   return (
-    // <ThemeProvider theme={theme}>
     <Router>
       <div>
         <Nav />
@@ -83,6 +75,13 @@ function App() {
             path="/form"
           >
             <RecipeForm />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/review/:recipe_id"
+          >
+            <ReviewForm />
           </ProtectedRoute>
 
 
@@ -148,7 +147,6 @@ function App() {
         {/* <Footer /> */}
       </div>
     </Router>
-    // </ThemeProvider>
   );
 }
 

@@ -58,6 +58,18 @@ try {
 }
 };
 
+function* addReview(action){
+  try {
+    const response = yield axios.post(`/api/user/review/${action.payload.recipe_id}`, action.payload);
+    console.log("Add Review action.payload",action.payload);
+    console.log("Add Review response",response);
+    //yield put({type: 'FETCH_REVIEWS'});
+  } catch (error) {  
+    console.log('Error in addReview', error);
+    yield put({type: 'ADD_REVIEW_ERROR' })
+  }
+}
+
 function* editRecipe(action){
   try {
     const response = yield axios.put(`/api/user/edit/${action.payload.recipe_id}`, action.payload);
@@ -76,6 +88,7 @@ function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeLatest('FETCH_USER_RECIPES', fetchUserRecipes);
   yield takeLatest('ADD_RECIPE', addRecipe);
+  yield takeLatest('ADD_REVIEW', addReview);
   yield takeLatest('DELETE_RECIPE', deleteRecipe);
   yield takeLatest('EDIT_RECIPE', editRecipe);
 }

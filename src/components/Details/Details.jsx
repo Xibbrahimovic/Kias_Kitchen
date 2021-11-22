@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import {Link} from 'react-router-dom';
 import { Button } from "@mui/material";
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
 
 function Details() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -14,6 +16,8 @@ function Details() {
 
   const history = useHistory();
   const recipe = useSelector((store) => store.details);
+
+  const [value, setValue] = useState(recipe.recipe_rating);
 
   console.log(recipe);
 //   useEffect({
@@ -27,11 +31,27 @@ function Details() {
       size="small"
       onClick={() => {history.push('/home')}}
       startIcon={<ArrowBackIosNewIcon/>}>BACK</Button>
-      <div className="container">
-        <img src={recipe.image} alt={recipe.name} height="300px" />
+      <div className="">
+        <img 
+          src={recipe.image} 
+          alt={recipe.name} 
+          height="375px"
+          width="375px"
+          />
         <div>
             <h2>{recipe.name}</h2>
             <p>{recipe.time} minutes</p>
+
+            <Rating
+              name="simple-controlled"
+              value={value}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+                history.push(`/review/${recipe.id}`);
+              }}
+            />
+
+
             <h2>Overview</h2>
             <p>{recipe.overview}</p>
             <h2>Ingredients</h2>
