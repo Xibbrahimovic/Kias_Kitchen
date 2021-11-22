@@ -12,17 +12,19 @@ function Details() {
   // const user = useSelector((store) => store.user);
 
   //allows recipes store to be accessed in page -- need for fetching and displaying
-//   const dispatch = useDispatch();
-
+  const dispatch = useDispatch();
+  const reviewsCount = useSelector((store) => store.reviewsCount);
   const history = useHistory();
   const recipe = useSelector((store) => store.details);
 
   const [value, setValue] = useState(recipe.recipe_rating);
 
-  console.log(recipe);
-//   useEffect({
-//       dispatch({type: })
-//   })
+
+  useEffect(() => {
+      dispatch({type: 'FETCH_REVIEW_COUNT', payload: recipe.id });
+  }, []);
+
+  console.log(recipe.id);
 
   return (
     // INSERT Header for Home page here
@@ -50,8 +52,11 @@ function Details() {
                 history.push(`/review/${recipe.id}`);
               }}
             />
+            {/* <p
+            onClick={() => history.push(`/reviews/${recipe.id}`)}
+            >REVIEW NUM</p> */}
+            <Typography>{reviewsCount}</Typography>
             
-
 
             <h2>Overview</h2>
             <p>{recipe.overview}</p>

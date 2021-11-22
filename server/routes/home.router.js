@@ -33,19 +33,4 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 });//end router.get 
 
-// router.get('/ratings', rejectUnauthenticated, (req, res) => {
-//     console.log('in /api/home');
-//     let queryText = `SELECT * FROM "ratings";`;
-
-//     pool
-//     .query(queryText)
-//     .then((response) => {
-//         res.send(response.rows);
-//     })
-//     .catch((error) => {
-//         console.log(`There was an error with the /api/home/ratings GET:`, error);
-//         res.sendStatus(500);
-//     });
-// });//end router.get 
-
 module.exports = router;

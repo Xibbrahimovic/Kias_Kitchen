@@ -23,6 +23,7 @@ import Home from '../Home/Home';
 import RecipeForm from '../RecipeForm/RecipeForm';
 import EditRecipe from '../EditRecipe/EditRecipe';
 import ReviewForm from '../ReviewForm/ReviewForm';
+import Reviews from '../Reviews/Reviews';
 
 import './App.css';
 import { pink } from '@mui/material/colors';
@@ -84,6 +85,12 @@ function App() {
             <ReviewForm />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            exact
+            path="/reviews"
+          >
+            <Reviews/>
+          </ProtectedRoute>
 
           <Route
             exact

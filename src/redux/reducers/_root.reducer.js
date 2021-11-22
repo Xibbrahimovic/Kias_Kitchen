@@ -4,7 +4,9 @@ import user from './user.reducer';
 import home from './home.reducer';
 import details from './details.reducer';
 import userRecipes from './userRecipes.reducer';
+import reviewsCount from './reviewsCount.reducer';
 // import ratings from './ratings.reducer';
+
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +21,7 @@ const rootReducer = combineReducers({
   details,//will contain the entire recipe object when clicked on
   userRecipes,//will contain the recipes based on user
   // ratings,
+  reviewsCount,
 });
 
 export default rootReducer;
