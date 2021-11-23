@@ -82,6 +82,26 @@ function* editRecipe(action){
   }
   };
   
+// function* updateFavorites(action){
+//   try {
+//     const response = yield axios.put(`/api/user/user/`)
+    
+//   } catch (error) {
+    
+//   }
+// }
+
+function* fetchFavorites(){
+  try {
+    const response = yield axios.get(`/api/user/favorites/`);
+    // console.log('This is the fetchFavorites GET response', action.payload);
+    console.log('This is the fetchFavorites GET response', response);
+    yield put({type: 'SET_FAVORITES', payload: response.data});
+  } catch (error) {
+    console.log('Error in fetchFavorites', error);
+    yield put({type: 'FETCH_FAVORITES_ERROR' })
+  }
+}
 
 
 function* userSaga() {
@@ -91,6 +111,7 @@ function* userSaga() {
   yield takeLatest('ADD_REVIEW', addReview);
   yield takeLatest('DELETE_RECIPE', deleteRecipe);
   yield takeLatest('EDIT_RECIPE', editRecipe);
+  yield takeLatest('FETCH_FAVORITES', fetchFavorites);
 }
 
 export default userSaga;

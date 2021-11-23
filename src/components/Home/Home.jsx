@@ -20,27 +20,27 @@ function Home() {
   //allows recipes store to be accessed in page -- need for fetching and displaying 
   const home = useSelector((store) => store.home);
   
-
   useEffect(() => {
     dispatch({type: 'FETCH_RECIPES'})
 }, []);
-  console.log(home);
+
+  console.log('This is home reducer', home);
 
   return (
         // INSERT Header for Home page here
     <div>
-    <div className="container">
-      {/* Loops through recipes store and fetches all the recipes */}
-      {home.map(recipe => {
-        return (
-          <RecipeItem
-          key={recipe.id}
-          recipe={recipe}
-          />
-        )
-      })}
-      
-    </div>
+      <div className="container">
+        {/* Loops through recipes store and fetches all the recipes */}
+        {home.map(recipe => {
+          return (
+            <RecipeItem
+            key={recipe.id}
+            recipe={recipe}
+            />
+          )
+        })}
+        
+      </div>
     <BottomNav/>
     </div>
   );

@@ -32,6 +32,21 @@ router.get("/recipes", rejectUnauthenticated, (req, res) => {
     });
   });
 
+  router.get("/favorites", rejectUnauthenticated, (req, res) => {
+    let queryText = `SELECT * FROM "favorites"
+                      WHERE user_id = $1;`;
+    pool
+      .query(queryText, [req.user.id])
+      .then((response) => {
+        res.send(response.rows); // response.rows contains all the recipes and their properties
+      })
+      .catch((error) => {
+        console.log(`There was an error with the /api/user GET:`, error);
+        res.sendStatus(500); // there was an error
+      });
+    });
+  
+
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted

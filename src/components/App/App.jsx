@@ -66,6 +66,13 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
+            exact
+            path="/favorites"
+          >
+            <Favorites />
+          </ProtectedRoute>
+
+          <ProtectedRoute
           exact 
           path="/home">
             <Home/>

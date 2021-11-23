@@ -6,7 +6,8 @@ import details from './details.reducer';
 import userRecipes from './userRecipes.reducer';
 import reviewsCount from './reviewsCount.reducer';
 import reviews from './reviews.reducer';
-// import ratings from './ratings.reducer';
+import favorites from './favorites.reducer';
+
 
 
 // rootReducer is the primary reducer for our entire project
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   // ratings,
   reviewsCount,
   reviews,
+  favorites,
 });
 
 export default rootReducer;

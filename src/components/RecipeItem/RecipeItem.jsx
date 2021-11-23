@@ -10,6 +10,11 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Rating from '@mui/material/Rating';
 
+import { Icon } from "@mui/material";
+import IconButton from '@mui/material/IconButton';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+
 function RecipeItem({recipe}){
     const dispatch = useDispatch();
     const history = useHistory();
@@ -18,6 +23,12 @@ function RecipeItem({recipe}){
         dispatch({type: "STORE_DETAILS", payload: recipe}),
         //navigate to details page
         history.push("/details")
+    }
+
+    // const [favorite, setFavorite] = useState(false)
+
+    const toggleFavorites = () => {
+        console.log('clicked heart!');
     }
 
 
@@ -32,7 +43,7 @@ function RecipeItem({recipe}){
             sx={{ maxWidth: 370,
                     mb: 1,}}
             key={recipe.id}>
-            <CardActionArea>
+            <Card>
                 <CardMedia
                     onClick={toDetails}
                     component="img"
@@ -54,11 +65,14 @@ function RecipeItem({recipe}){
 
                 <Rating 
                     name="half-rating" 
-                    precision={0.5}
+                    precision={0.25}
                     value={recipe.recipe_rating} 
                     readOnly />
+                <IconButton onClick={() => {toggleFavorites}}>
+                    <FavoriteBorderOutlinedIcon/>
+                </IconButton>
                 </CardContent>
-            </CardActionArea>
+            </Card>
         </Card>
     )
 }

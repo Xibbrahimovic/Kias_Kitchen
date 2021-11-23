@@ -1,15 +1,20 @@
 import React from 'react';
+import { useEffect } from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 
-// This is one of our simplest components
-// It doesn't have local state
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is
+import RecipeItem from '../RecipeItem/RecipeItem';
+import BottomNav from '../BottomNav/BottomNav';
+import { Container, Typography } from '@mui/material';
 
 function Favorites() {
   return (
-    <div className="container">
-      <p>Your favorites!</p>
-    </div>
+    <Container>
+      <Container className="container">
+        <Typography>Your favorites!</Typography>
+
+      </Container>
+      <BottomNav/>
+    </Container>
   );
 }
 

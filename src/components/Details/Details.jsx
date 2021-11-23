@@ -46,7 +46,7 @@ function Details() {
 
             <Rating
               name="simple-controlled"
-              precision={0.5}
+              precision={0.25}
               value={value}
               onChange={(event, newValue) => {
                 setValue(newValue);
