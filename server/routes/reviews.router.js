@@ -27,7 +27,8 @@ pool
 
 
 router.get('/:id', (req, res) => {
-    const id = req.params.recipeId;
+    const id = req.params.id;
+    console.log(req.params);
     console.log('This is the recipe id', id);
     console.log('This is the req.body',req.body);
 

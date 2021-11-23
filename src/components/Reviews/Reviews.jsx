@@ -6,6 +6,8 @@ import { useHistory, useParams } from "react-router";
 import { Container } from "@mui/material";
 import BottomNav from "../BottomNav/BottomNav";
 
+import ReviewItem from '../ReviewItem/ReviewItem';
+
 function Reviews(){
     const dispatch = useDispatch();
     const history = useHistory();
@@ -28,7 +30,7 @@ function Reviews(){
         <Container>
         {reviews.map(review => {
             return(
-                <Review
+                <ReviewItem
                 key={review.id}
                 review={review}
                 />)
