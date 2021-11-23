@@ -13,9 +13,21 @@ function* fetchReviewCount(action) {
     }
 }
 
+function* fetchAllReviews(action) {
+    try {
+        const response = yield axios.get(`/api/reviews/:recipeId`);
+        console.log('response',response);
+        yield put({ type: 'SET_ALL_REVIEWS', payload: response.data });
+    } catch (err) {
+        yield put({ type: 'SET_ALL_REVIEWS_ERROR' });
+        console.log(err);
+    }
+}
+
 //watching for functions 
 function* reviews() {
     yield takeLatest('FETCH_REVIEW_COUNT', fetchReviewCount);
+    yield takeLatest('FETCH_ALL_REVIEWS', fetchAllReviews)
 }
 
 

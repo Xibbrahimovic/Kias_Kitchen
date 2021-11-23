@@ -2,9 +2,6 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
 router.get('/', (req, res) => {
     console.log('req.body',req.body);
     // const recipeId = req.body.recipeId;
@@ -13,8 +10,8 @@ router.get('/', (req, res) => {
   console.log(id);
 
   const getReviewsQuery = `
-  SELECT COUNT("rating") FROM "ratings"
-WHERE ratings.recipes_id = $1;`;
+    SELECT COUNT("rating") FROM "ratings"
+    WHERE ratings.recipes_id = $1;`;
 
 pool
     .query(getReviewsQuery, [id])
@@ -26,6 +23,31 @@ pool
         console.log('There was an error with the /api/reviews GET:', error);
         res.sendStatus(500);
     })
+});
+
+
+router.get('/:id', (req, res) => {
+    const id = req.params.recipeId;
+    console.log('This is the recipe id', id);
+    console.log('This is the req.body',req.body);
+
+    const getAllReviewsQuery = `
+    SELECT 
+    ratings.rating,
+    ratings.review,
+    username FROM "ratings"
+    LEFT JOIN "user" ON "ratings".user_id = "user".id
+    WHERE ratings.recipes_id = '$1';`;                            
+
+    pool
+    .query(getAllReviewsQuery, [id])
+    .then((response) => {
+        res.send(response.rows); //response.rows will contain all reviews and ratings from the ratings table
+    })
+    .catch((error) => {
+        console.log(`There was an error with the /api/reviews/:id GET`, error);
+        res.sendStatus(500);
+    });
 });
 
 /**
