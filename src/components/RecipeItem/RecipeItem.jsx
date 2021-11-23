@@ -53,7 +53,8 @@ function RecipeItem({recipe}){
                         variant="caption">Cook Time: {recipe.time} min</Typography>
 
                 <Rating 
-                    name="read-only" 
+                    name="half-rating" 
+                    precision={0.5}
                     value={recipe.recipe_rating} 
                     readOnly />
                 </CardContent>

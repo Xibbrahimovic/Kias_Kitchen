@@ -27,6 +27,7 @@ function ReviewItem({review}){
             </Box>
 
             <Rating
+                name="half-rating"
                 value={review.rating}
                 readOnly/>
 
