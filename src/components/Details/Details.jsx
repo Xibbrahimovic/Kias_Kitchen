@@ -52,12 +52,9 @@ function Details() {
                 history.push(`/review/${recipe.id}`);
               }}
             />
-            {/* <p
-            onClick={() => history.push(`/reviews/${recipe.id}`)}
-            >REVIEW NUM</p> */}
             <Typography
             onClick={() => history.push(`/reviews/${recipe.id}`)}
-            >{reviewsCount}</Typography>
+            >( {reviewsCount} ) Reviews</Typography>
             
 
             <h2>Overview</h2>
