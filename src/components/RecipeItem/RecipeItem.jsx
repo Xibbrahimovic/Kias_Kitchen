@@ -13,7 +13,7 @@ import Rating from '@mui/material/Rating';
 import { Icon } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function RecipeItem({recipe}){
     const dispatch = useDispatch();
@@ -27,12 +27,18 @@ function RecipeItem({recipe}){
 
     // const [favorite, setFavorite] = useState(false)
 
-    const toggleFavorites = () => {
-        console.log('clicked heart!');
+    const addFavorite = () => {
+        console.log('Filling up my favorites <3');
+        dispatch({type: 'ADD_FAVORITE', payload: recipe})
+    }
+
+    const deleteFavorite = () => {
+        console.log('Removing from favorites :(');
+        dispatch({type: 'DELETE_FAVORITE', payload: recipe})
     }
 
 
-    console.log("This is the recipe sent to reducer",recipe);
+    console.log("This is the recipe sent to reducer", recipe);
     
     return(
         <Card
@@ -68,9 +74,18 @@ function RecipeItem({recipe}){
                     precision={0.25}
                     value={recipe.recipe_rating} 
                     readOnly />
-                <IconButton onClick={() => {toggleFavorites}}>
+                {/* {isFavorited
+                ? <IconButton onClick={() => {addFavorite}}>
                     <FavoriteBorderOutlinedIcon/>
                 </IconButton>
+                :<IconButton onClick={() => {deleteFavorite}}>
+                <FavoriteIcon/>
+                </IconButton>} */}
+
+                <IconButton onClick={addFavorite}>
+                    <FavoriteBorderOutlinedIcon/>
+                </IconButton>
+                
                 </CardContent>
             </Card>
         </Card>

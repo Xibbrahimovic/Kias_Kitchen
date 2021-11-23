@@ -46,6 +46,19 @@ function* addRecipe(action){
 };
 
 
+function* deleteFavorite(action){
+  try {
+    const response = yield axios.delete(`/api/user/deletefavorite${action.payload}`);
+    console.log(action.payload);
+    console.log(response);
+    yield put({type: 'FETCH_FAVORITES'})
+  } catch (error) {
+    console.log('Error in deleteFavorite', error);
+    yield put({type: 'DELETE_FAVORITE_ERROR' })
+  }
+  };
+  
+
 function* deleteRecipe(action){
 try {
   const response = yield axios.delete(`/api/user/${action.payload}`);
@@ -82,14 +95,7 @@ function* editRecipe(action){
   }
   };
   
-// function* updateFavorites(action){
-//   try {
-//     const response = yield axios.put(`/api/user/user/`)
-    
-//   } catch (error) {
-    
-//   }
-// }
+
 
 function* fetchFavorites(){
   try {
@@ -103,6 +109,16 @@ function* fetchFavorites(){
   }
 }
 
+function* addFavorite(action){
+  try {
+    const response = yield axios.post(`/api/user/favorites/${action.payload.id}`, action.payload);
+    console.log('SAGA - response from addFavorites post route:', response);
+    yield put({type: 'FETCH_FAVORITES'});
+  } catch (error) {
+    console.log('Error in the SAGA, addFavorite post route', error);
+  }
+}
+
 
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
@@ -112,6 +128,8 @@ function* userSaga() {
   yield takeLatest('DELETE_RECIPE', deleteRecipe);
   yield takeLatest('EDIT_RECIPE', editRecipe);
   yield takeLatest('FETCH_FAVORITES', fetchFavorites);
+  yield takeLatest('ADD_FAVORITE', addFavorite);
+  yield takeLatest('DELETE_FAVORITE', deleteFavorite);
 }
 
 export default userSaga;

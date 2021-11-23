@@ -111,6 +111,30 @@ router.post("/review/:recipeId", (req, res) => {
   })
 })
 
+router.post("/favorites/:recipeId", (req, res) => {
+  console.log('Req.body',req.body);
+  console.log('req.user', req.user);
+  const recipeId = req.params.recipeId;
+  console.log('This is the recipeId in router', recipeId);
+
+  const insertFavoriteQuery = `
+  INSERT INTO "favorites" ("user_id", "recipe_id")
+  VALUES ($1, $2);`
+
+  //inserted values from the form 
+  let values = [req.user.id, recipeId]
+  console.log(values);
+  pool.query(insertFavoriteQuery, values)
+  .then(result => {
+    console.log('Results', result.rows);
+    res.sendStatus(201);
+  })
+  .catch(error => {
+    console.log('error in query', error);
+    res.sendStatus(500);
+  })
+})
+
 
 router.put("/edit/:recipeId", (req, res) => {
   console.log('Req.body',req.body);
