@@ -5,6 +5,7 @@ import home from './home.reducer';
 import details from './details.reducer';
 import userRecipes from './userRecipes.reducer';
 import reviewsCount from './reviewsCount.reducer';
+import reviews from './reviews.reducer';
 // import ratings from './ratings.reducer';
 
 
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   userRecipes,//will contain the recipes based on user
   // ratings,
   reviewsCount,
+  reviews,
 });
 
 export default rootReducer;

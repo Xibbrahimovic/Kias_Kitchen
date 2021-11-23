@@ -37,7 +37,7 @@ router.get('/:id', (req, res) => {
     ratings.review,
     username FROM "ratings"
     LEFT JOIN "user" ON "ratings".user_id = "user".id
-    WHERE ratings.recipes_id = '$1';`;                            
+    WHERE ratings.recipes_id = $1;`;                            
 
     pool
     .query(getAllReviewsQuery, [id])

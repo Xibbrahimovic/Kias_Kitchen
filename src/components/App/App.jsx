@@ -87,7 +87,7 @@ function App() {
 
           <ProtectedRoute
             exact
-            path="/reviews"
+            path="/reviews/:recipe_id"
           >
             <Reviews/>
           </ProtectedRoute>

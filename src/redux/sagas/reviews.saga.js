@@ -15,7 +15,7 @@ function* fetchReviewCount(action) {
 
 function* fetchAllReviews(action) {
     try {
-        const response = yield axios.get(`/api/reviews/:recipeId`);
+        const response = yield axios.get(`/api/reviews/${action.payload}`);
         console.log('response',response);
         yield put({ type: 'SET_ALL_REVIEWS', payload: response.data });
     } catch (err) {
