@@ -15,7 +15,7 @@ import IconButton from '@mui/material/IconButton';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-function RecipeItem({recipe}){
+function RecipeItem({recipe, isFavorited}){
     const dispatch = useDispatch();
     const history = useHistory();
     const toDetails = () => {

@@ -32,10 +32,13 @@ function Home() {
       <div className="container">
         {/* Loops through recipes store and fetches all the recipes */}
         {home.map(recipe => {
+          // check to see if in favorites
+          //
           return (
             <RecipeItem
             key={recipe.id}
             recipe={recipe}
+            // isFavorited={}
             />
           )
         })}

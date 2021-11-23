@@ -27,9 +27,6 @@ function Favorites() {
       <Container className="container">
         <Typography>Your favorites!</Typography>
         {favorites.map(recipe => {
-          if(favorites[recipe].id){
-            //pass down a prop for isFav = true 
-          }
           return (
             <RecipeItem
             key={recipe.id}
