@@ -1,10 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
-import { useHistory, useParams } from "react-router";
+import { useHistory, useParams, withRouter } from "react-router";
 
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import BottomNav from "../BottomNav/BottomNav";
+import { Paper } from "@mui/material";
+import { Button } from "@mui/material";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
 
 import ReviewItem from '../ReviewItem/ReviewItem';
 
@@ -27,16 +31,28 @@ function Reviews(){
 
     return(
         <Container>
-        <Container>
-        {reviews.map(review => {
-            return(
-                <ReviewItem
-                key={review.id}
-                review={review}
-                />)
-        })}
-        </Container>
-        <BottomNav/>
+             <Button
+                size="small"
+                onClick={() => history.push('/home')}
+                startIcon={<ArrowBackIosNewIcon/>}>BACK</Button>
+            <Container>
+            <Typography>Here's what the community kitchens thought about this dish!</Typography>
+            {reviews.map(review => {
+                return(
+                    <Paper
+                        elevation={3}>
+                        <ReviewItem
+                            sx={{
+                                my: '5'
+                            }}
+                            key={review.id}
+                            review={review}
+                        />
+                    </Paper>
+                    )
+            })}
+            </Container>
+            <BottomNav/>
         </Container>
     )
 }
