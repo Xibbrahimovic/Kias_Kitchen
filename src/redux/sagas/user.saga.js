@@ -45,18 +45,6 @@ function* addRecipe(action){
   }
 };
 
-
-function* deleteFavorite(action){
-  try {
-    const response = yield axios.delete(`/api/user/deletefavorite${action.payload}`);
-    console.log(action.payload);
-    console.log(response);
-    yield put({type: 'FETCH_FAVORITES'})
-  } catch (error) {
-    console.log('Error in deleteFavorite', error);
-    yield put({type: 'DELETE_FAVORITE_ERROR' })
-  }
-  };
   
 
 function* deleteRecipe(action){
@@ -113,11 +101,23 @@ function* addFavorite(action){
   try {
     const response = yield axios.post(`/api/user/favorites/${action.payload.id}`, action.payload);
     console.log('SAGA - response from addFavorites post route:', response);
-    yield put({type: 'FETCH_FAVORITES'});
+    yield put({type: 'FETCH_RECIPES'});
   } catch (error) {
     console.log('Error in the SAGA, addFavorite post route', error);
   }
 }
+
+function* deleteFavorite(action){
+  try {
+    const response = yield axios.delete(`/api/user/deletefavorite${action.payload.id}`);
+    console.log(action.payload);
+    console.log(response);
+    yield put({type: 'FETCH_FAVORITES'})
+  } catch (error) {
+    console.log('Error in deleteFavorite', error);
+    yield put({type: 'DELETE_FAVORITE_ERROR' })
+  }
+  };
 
 
 function* userSaga() {

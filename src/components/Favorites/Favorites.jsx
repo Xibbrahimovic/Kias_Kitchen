@@ -13,6 +13,7 @@ function Favorites() {
   const dispatch = useDispatch();
   //allows favorites to be accessed on this view
   const favorites = useSelector((store) => store.favorites);
+  const recipes = useSelector((store) => store.home);
 
   console.log('This is the favorites reducer', favorites);
 

@@ -11,18 +11,20 @@ const {
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('in /api/home');
     let queryText = `SELECT recipes.id,
-                    recipes.name,
-                    recipes.image,
-                    recipes.time,
-                    recipes.overview,
-                    recipes.ingredients, 
-                    recipes.instructions, 
-                    AVG(COALESCE(ratings.rating, 0))::NUMERIC(10,1) AS recipe_rating FROM "recipes"
-                LEFT JOIN "ratings" ON ratings.recipes_id = recipes.id
-                GROUP BY recipes.id;`;
+    recipes.name,
+    recipes.image,
+    recipes.time,
+    recipes.overview,
+    recipes.ingredients, 
+    recipes.instructions,
+    favorites.id AS favID,
+    AVG(COALESCE(ratings.rating, 0))::NUMERIC(10,1) AS recipe_rating FROM "recipes"
+ LEFT JOIN "ratings" ON ratings.recipes_id = recipes.id
+ LEFT OUTER JOIN "favorites" on "favorites"."recipe_id" = "recipes"."id" AND "favorites"."user_id" = $1
+ GROUP BY "favorites"."id", "recipes"."id";`;
 
     pool
-    .query(queryText)
+    .query(queryText, [req.user.id])
     .then((response) => {
         console.log('This is the home get route',response);
         res.send(response.rows);

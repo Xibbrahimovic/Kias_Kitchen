@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
 import RecipeItem from '../RecipeItem/RecipeItem';
@@ -16,6 +16,7 @@ function Home() {
 
   //initiates dispatch for use
   const dispatch = useDispatch();
+  const [isFavorited, setIsFavorited] = useState(false);
 
   //allows recipes store to be accessed in page -- need for fetching and displaying 
   const home = useSelector((store) => store.home);
@@ -25,21 +26,26 @@ function Home() {
 }, []);
 
   console.log('This is home reducer', home);
-
   return (
         // INSERT Header for Home page here
     <div>
       <div className="container">
         {/* Loops through recipes store and fetches all the recipes */}
         {home.map(recipe => {
-          // check to see if in favorites
-          //
+          // console.log(isFavorited);
+          // if(recipe.favId){
+          //   setIsFavorited(true)
+          // }else{
+          //   setIsFavorited(false)
+          // }
           return (
+            <>
             <RecipeItem
             key={recipe.id}
             recipe={recipe}
-            // isFavorited={}
+            favid={recipe.favid}
             />
+            </>
           )
         })}
         
