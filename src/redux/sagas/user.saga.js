@@ -64,7 +64,7 @@ function* addReview(action){
     const response = yield axios.post(`/api/user/review/${action.payload.recipe_id}`, action.payload);
     console.log("Add Review action.payload",action.payload);
     console.log("Add Review response",response);
-    //yield put({type: 'FETCH_REVIEWS'});
+    yield put({type: 'FETCH_REVIEWS'});
   } catch (error) {  
     console.log('Error in addReview', error);
     yield put({type: 'ADD_REVIEW_ERROR' })
