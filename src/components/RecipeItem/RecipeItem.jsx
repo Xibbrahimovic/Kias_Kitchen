@@ -97,8 +97,7 @@ function RecipeItem({ recipe, favid }) {
       </Card>
 
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-          Recipe added to favorites! ❤️  
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>Recipe added to favorites! ❤️  
         </Alert>
       </Snackbar>
     </Card>

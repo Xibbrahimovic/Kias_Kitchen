@@ -5,6 +5,14 @@ import {useSelector, useDispatch} from 'react-redux';
 import { useHistory } from 'react-router';
 
 import BottomNav from '../BottomNav/BottomNav';import Rating from '@mui/material/Rating';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import { Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 function Profile() {
@@ -42,14 +50,43 @@ function Profile() {
           {userRecipes.map((recipe) => (
             <tr key={recipe.id}>
               <td>{recipe.name}</td>
-              <td>{userRecipes.rating}</td>
+              <td>{recipe.recipe_rating}</td>
               <td>{recipe.time}</td>
-              <button onClick={() => history.push(`/edit/${recipe.id}`)}>EDIT</button>
-              <button onClick={() => dispatch({type: 'DELETE_RECIPE', payload: recipe.id})}>DELETE</button>
+              
             </tr>
           ))}
         </tbody>
       </table>
+      
+
+      <TableContainer component={Paper}>
+      <Table sx={{ maxWidth: 300 }} aria-label="caption table">
+        <caption>*All of your recipes you've uploaded are listed here</caption>
+        <TableHead>
+          <TableRow>
+            <TableCell>Recipe Name</TableCell>
+            <TableCell align="right">Rating</TableCell>
+            <TableCell align="right">Cook Time(min)</TableCell>
+            <TableCell align="center"></TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {userRecipes.map((recipe) => (
+            <TableRow key={recipe.id}>
+              <TableCell component="th" scope="row">
+                {recipe.name}
+              </TableCell>
+              <TableCell align="left">{recipe.recipe_rating}</TableCell>
+              {/* <TableCell align="right">{recipe.rating}</TableCell> */}
+              <TableCell align="right">{recipe.time}</TableCell>
+              <Button onClick={() => history.push(`/edit/${recipe.id}`)}>EDIT</Button>
+              <Button onClick={() => dispatch({type: 'DELETE_RECIPE', payload: recipe.id})}>DELETE</Button>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+
 
       <LogOutButton className="btn logoutBtn" />
       <BottomNav/>

@@ -17,8 +17,13 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 
 //fetches user recipes based on ID
 router.get("/recipes", rejectUnauthenticated, (req, res) => {
-  let queryText = `SELECT * FROM "recipes"
-                    WHERE user_id = $1;`;
+  let queryText = `
+  SELECT recipes.name,
+  recipes.time,
+  AVG(COALESCE(ratings.rating, 0))::NUMERIC(10,1) AS recipe_rating FROM "recipes"
+LEFT JOIN "ratings" ON ratings.recipes_id = recipes.id
+WHERE "recipes"."user_id" = $1
+GROUP BY "recipes".name, "recipes".time;`;
   pool
     .query(queryText, [req.user.id])
     .then((response) => {

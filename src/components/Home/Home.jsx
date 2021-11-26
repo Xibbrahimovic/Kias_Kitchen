@@ -6,7 +6,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import RecipeItem from '../RecipeItem/RecipeItem';
 import BottomNav from '../BottomNav/BottomNav';
 import './Home.css';
-import Rating from '@mui/material/Rating';
+
 import Typography from '@mui/material/Typography';
 
 
@@ -20,6 +20,7 @@ function Home() {
   //allows recipes store to be accessed in page -- need for fetching and displaying 
   const home = useSelector((store) => store.home);
   
+  //will dispatch to populate recipes for reducer 
   useEffect(() => {
     dispatch({type: 'FETCH_RECIPES'})
 }, []);
