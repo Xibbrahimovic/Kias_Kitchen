@@ -12,7 +12,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EditIcon from '@mui/icons-material/Edit';
 import { Button } from '@mui/material';
+import { IconButton } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 function Profile() {
@@ -33,40 +37,20 @@ function Profile() {
 
   return (
     <div className="container">
-      <h2>Hello, {user.username}!</h2>
-      {/* UPLOAD A PROFILE PHOTO HERE */}
-      <p>Your ID is: {user.id}</p>
+      <Typography variant="h5">Hello, {user.username}!</Typography>
+      <Typography variant="h5">Your Recipes List</Typography>
       <br></br>
-      <h5>Your Recipes List</h5>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Rating</th>
-            <th>Cook Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          {userRecipes.map((recipe) => (
-            <tr key={recipe.id}>
-              <td>{recipe.name}</td>
-              <td>{recipe.recipe_rating}</td>
-              <td>{recipe.time}</td>
-              
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      
-
+      {userRecipes.length === 0 ? 
+          (<Typography>You don't have any recipes yet. Upload your own on the bottom nav bar! 🙏</Typography>
+          ):(
       <TableContainer component={Paper}>
       <Table sx={{ maxWidth: 300 }} aria-label="caption table">
         <caption>*All of your recipes you've uploaded are listed here</caption>
         <TableHead>
           <TableRow>
             <TableCell>Recipe Name</TableCell>
-            <TableCell align="right">Rating</TableCell>
-            <TableCell align="right">Cook Time(min)</TableCell>
+            <TableCell align="left">Rating</TableCell>
+            <TableCell align="left">Cook Time(min)</TableCell>
             <TableCell align="center"></TableCell>
           </TableRow>
         </TableHead>
@@ -76,18 +60,22 @@ function Profile() {
               <TableCell component="th" scope="row">
                 {recipe.name}
               </TableCell>
-              <TableCell align="left">{recipe.recipe_rating}</TableCell>
-              {/* <TableCell align="right">{recipe.rating}</TableCell> */}
+              <TableCell align="left"><Rating
+                  name="half-rating"
+                  precision={0.25}
+                  value={recipe.recipe_rating}
+                  readOnly
+                /></TableCell>
               <TableCell align="right">{recipe.time}</TableCell>
-              <Button onClick={() => history.push(`/edit/${recipe.id}`)}>EDIT</Button>
-              <Button onClick={() => dispatch({type: 'DELETE_RECIPE', payload: recipe.id})}>DELETE</Button>
+              <IconButton onClick={() => history.push(`/edit/${recipe.id}`)}>
+                <EditIcon/></IconButton>
+              <IconButton onClick={() => dispatch({type: 'DELETE_RECIPE', payload: recipe.id})}><DeleteForeverIcon/></IconButton>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
-
-
+    </TableContainer>)}
+    <br></br>
       <LogOutButton className="btn logoutBtn" />
       <BottomNav/>
     </div>

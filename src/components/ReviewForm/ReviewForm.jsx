@@ -17,12 +17,7 @@ function ReviewForm(){
     const {recipe_id} = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
-    // const [value, setValue] = useState(0);
 
-    //will be used for image
-    // const recipe = useSelector((store) => store.home);
-    
-    //empty values for property inputs
     let base = {
         rating: '',
         review: ''
@@ -41,7 +36,7 @@ function ReviewForm(){
         event.preventDefault();
         //dispatches newReview along with recipeID
         dispatch({type: 'ADD_REVIEW', payload: {newReview, recipe_id}});
-        // history.push('/home');
+        history.push('/home');
     }
     //checking the payload contents
     console.log('This is the review being sent to the saga', newReview);
@@ -63,7 +58,8 @@ function ReviewForm(){
                 </Typography>
 
                 <TextField 
-                    height = '400px'
+                    multiline={true}
+                    rows={10}
                     fullWidth 
                     label="What did you think of the recipe?" 
                     id="fullWidth" 

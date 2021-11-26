@@ -3,6 +3,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
 import { useParams } from "react-router";
+import { TextField } from "@mui/material";
+import { Box } from "@mui/system";
+import { Button } from "@mui/material";
+import SaveIcon from '@mui/icons-material/Save';
+import { Typography } from "@mui/material";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 function EditRecipe(){
     const dispatch = useDispatch();
@@ -48,61 +54,102 @@ function EditRecipe(){
 
     return(
         <div>
-            <h2>Add your recipe to the kitchen!</h2>
-            <button
-            onClick={() => {history.push('/profile')}}>CANCEL</button>
+            <Typography
+            variant="h6">Make sure to save your changes!</Typography>
+            <Button
+            variant="contained"
+            startIcon={<ArrowBackIosNewIcon/>}
+            onClick={() => {history.push('/profile')}}>GO BACK</Button>
+            <br></br>
+            <br></br>
             <form 
             className="recipeForm"
             onSubmit={updateRecipe}>
+                <Box
+                sx={{
+                    width: 500,
+                    maxWidth: '90%',
+                    mb: 15
+                }}>
                 <div>
-                <input
+                <TextField
+                    label="Upload your photo here!"
+                    fullWidth 
+                    variant="outlined"
                     placeholder="Upload your photo here! "
                     type="url"
                     value={editRecipe.image}
                     onChange={(event) => handleInputChange(event, 'image')}/>
                 </div>
+                <br></br>
                 <div>
-                <input
+                <TextField
+                    label="Recipe Name"
+                    fullWidth 
+                    variant="outlined"
                     placeholder="Recipe Name "
                     type="text"
                     value={editRecipe.name}
                     onChange={(event) => handleInputChange(event, 'name')}/>
                 </div>
+                <br></br>
                 <div>
-                <input
+                <TextField
+                    label="Cook Time - How long will it take? (min)"
+                    fullWidth 
+                    variant="outlined"
                     placeholder="Cook Time - How long will it take? (min)"
                     type="text"
                     value={editRecipe.time}
                     onChange={(event) => handleInputChange(event, 'time')}/>
                 </div>
-
+                <br></br>
                 <div>
-                <input
+                <TextField
+                    variant="outlined"
+                    label="Overview - Sell your recipe, what is it about? ✨"
+                    fullWidth 
+                    multiline={true}
+                    rows={5}
                     placeholder="Overview - Sell your recipe, what is it about? ✨"
                     type="text"
                     value={editRecipe.overview}
                     onChange={(event) => handleInputChange(event, 'overview')}/>
                 </div>
-
+                <br></br>
                 <div>
-                <input
+                <TextField
+                    variant="outlined"
+                    label="Ingredients - What should i get from my kitchen? "
+                    fullWidth
+                    multiline={true}
+                    rows={10}
                     placeholder="Ingredients - What should i get from my kitchen? "
                     type="text"
                     value={editRecipe.ingredients}
                     onChange={(event) => handleInputChange(event, 'ingredients')}/>
                 </div>
-
+                <br></br>
                 <div>
-                <input
+                <TextField
+                    variant="outlined"
+                    label="Instructions - Now, what do I need to do? 1️⃣"
+                    fullWidth 
+                    multiline={true}
+                    rows={10}
                     placeholder="Instructions - Now, what do I need to do? 1️⃣"
                     type="text"
                     value={editRecipe.instructions}
                     onChange={(event) => handleInputChange(event, 'instructions')}/>
                 </div>
-                <button 
+                <br></br>
+                <Button 
+                variant="contained"
                 className= "btn"
                 type='submit' 
-                value='Edit Recipe'>Submit Changes!</button>
+                value='Edit Recipe'
+                endIcon={<SaveIcon/>}>Submit Changes!</Button>
+                </Box>
             </form>
         </div>
     )
