@@ -193,6 +193,40 @@ router.put("/edit/:recipeId", (req, res) => {
     });
 });
 
+router.delete("/deletefavorite:id", (req, res) => {
+  console.log("user is", req.user.id);
+
+  console.log("comparing to recipe id", req.params.id);
+  console.log(req.params);
+  let id = req.params.id; //This our way of identifying the variable 'id' sent along with the route.
+  let queryText = `
+  DELETE FROM "favorites"
+  WHERE recipe_id = $1 AND
+  user_id = $2;`;
+  //queryText is sql text that we want to transfer over to pool.
+  let values = [id, req.user.id];
+
+  //Package the queryText and the id to have pool interact with the database for us
+  //and execute the intended goal which in this case is to delete the data at id
+  pool
+    .query(queryText, values)
+    .then((results) => {
+      console.log("results is", results);
+      if (results.rowCount === 0) {
+        //rowCount is a number that represents how many rows were found by query
+        //We created a conditional that checks to see if rowCount is equal to 0 if
+        //it is we send back a forbidden (403)
+        res.sendStatus(403);
+      } else {
+        res.sendStatus(204); //if completed then we get a '204' which is thumbs up
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500); //if failed we get a '500'
+    });
+  // endpoint functionality
+});
 router.delete("/:id", (req, res) => {
   console.log("user is", req.user.id);
 
@@ -226,7 +260,6 @@ router.delete("/:id", (req, res) => {
     });
   // endpoint functionality
 });
-
 // Handles login form authenticate/login POST
 // userStrategy.authenticate('local') is middleware that we run on this route
 // this middleware will run our POST if successful

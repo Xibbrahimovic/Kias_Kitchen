@@ -10,14 +10,25 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Rating from "@mui/material/Rating";
 
-import { Icon } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
+import { pink } from "@mui/material/colors";
 
 function RecipeItem({ recipe, favid }) {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
   const toDetails = () => {
     //dispatching recipe as object to details reducer
     dispatch({ type: "STORE_DETAILS", payload: recipe }),
@@ -25,18 +36,10 @@ function RecipeItem({ recipe, favid }) {
       history.push("/details");
   };
 
-//   const [favorite, setFavorite] = useState(false)
-//   if (favid) {
-//     isFavorited = `<IconButton onClick={() => {deleteFavorite}}><FavoriteIcon/></IconButton>`;
-//   } else {
-//     isFavorited = `<IconButton onClick={() => {addFavorite}}>
-//     <FavoriteBorderOutlinedIcon/>
-//     </IconButton>`;
-//   }
-
   const addFavorite = () => {
     console.log("Filling up my favorites <3");
     dispatch({ type: "ADD_FAVORITE", payload: recipe });
+    setOpen(true);
   };
 
   const deleteFavorite = () => {
@@ -44,8 +47,6 @@ function RecipeItem({ recipe, favid }) {
     dispatch({ type: "DELETE_FAVORITE", payload: recipe });
   };
 
-  console.log("This is the recipe sent to reducer", recipe);
-//   console.log(isFavorited);
   return (
     <Card
       className="recipeCard"
@@ -84,15 +85,22 @@ function RecipeItem({ recipe, favid }) {
             value={recipe.recipe_rating}
             readOnly
           />
-                {favid ? 
-                <IconButton onClick={deleteFavorite}>
-                    <FavoriteIcon/>
-                </IconButton>
-                :<IconButton onClick={addFavorite}>
-                    <FavoriteBorderOutlinedIcon/>
-                </IconButton>}
+        {favid 
+        ? <IconButton onClick={deleteFavorite}>
+            <FavoriteIcon
+            sx={{ color: pink[400] }}/>
+        </IconButton>
+        :<IconButton onClick={addFavorite}>
+            <FavoriteBorderOutlinedIcon/>
+        </IconButton>}
         </CardContent>
       </Card>
+
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Recipe added to favorites! ❤️  
+        </Alert>
+      </Snackbar>
     </Card>
   );
 }

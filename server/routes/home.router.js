@@ -10,7 +10,8 @@ const {
 
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('in /api/home');
-    let queryText = `SELECT recipes.id,
+    let queryText = `
+    SELECT recipes.id,
     recipes.name,
     recipes.image,
     recipes.time,

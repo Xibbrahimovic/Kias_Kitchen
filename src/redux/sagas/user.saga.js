@@ -112,7 +112,7 @@ function* deleteFavorite(action){
     const response = yield axios.delete(`/api/user/deletefavorite${action.payload.id}`);
     console.log(action.payload);
     console.log(response);
-    yield put({type: 'FETCH_FAVORITES'})
+    yield put({type: 'FETCH_RECIPES'})
   } catch (error) {
     console.log('Error in deleteFavorite', error);
     yield put({type: 'DELETE_FAVORITE_ERROR' })
