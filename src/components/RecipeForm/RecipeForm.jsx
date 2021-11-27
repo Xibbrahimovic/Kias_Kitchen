@@ -34,7 +34,7 @@ function RecipeForm(){
         event.preventDefault();
         //sends over new object to saga/server to process and send to DB
         dispatch({type: 'ADD_RECIPE', payload: newRecipe})
-        setRecipe(base);
+        // setRecipe(base);
     }
     console.log(newRecipe);
 

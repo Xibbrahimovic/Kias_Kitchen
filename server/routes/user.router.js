@@ -18,12 +18,13 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 //fetches user recipes based on ID
 router.get("/recipes", rejectUnauthenticated, (req, res) => {
   let queryText = `
-  SELECT recipes.name,
+  SELECT recipes.id,
+  recipes.name,
   recipes.time,
   AVG(COALESCE(ratings.rating, 0))::NUMERIC(10,1) AS recipe_rating FROM "recipes"
 LEFT JOIN "ratings" ON ratings.recipes_id = recipes.id
 WHERE "recipes"."user_id" = $1
-GROUP BY "recipes".name, "recipes".time;`;
+GROUP BY "recipes"."id", "recipes"."name", "recipes"."time";`;
   pool
     .query(queryText, [req.user.id])
     .then((response) => {
@@ -37,14 +38,14 @@ GROUP BY "recipes".name, "recipes".time;`;
 
 router.get("/favorites", rejectUnauthenticated, (req, res) => {
   let queryText = `
-    SELECT recipes.id,
-	   recipes.name,
-	   recipes.image,
-	   recipes.time,
-	   recipes.overview,
-	   recipes.ingredients, 
-	   recipes.instructions, 
-	   AVG(COALESCE(ratings.rating, 0))::NUMERIC(10,1) AS recipe_rating FROM "favorites"
+      SELECT recipes.id,
+      recipes.name,
+      recipes.image,
+      recipes.time,
+      recipes.overview,
+      recipes.ingredients, 
+      recipes.instructions, 
+      AVG(COALESCE(ratings.rating, 0))::NUMERIC(10,1) AS recipe_rating FROM "favorites"
       JOIN "recipes" ON "recipes"."id" = "favorites"."recipe_id"
       JOIN "ratings" ON "ratings"."recipes_id" = "recipes"."id"
       WHERE "favorites"."user_id" = $1
