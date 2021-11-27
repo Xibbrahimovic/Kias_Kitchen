@@ -8,6 +8,7 @@ import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import PublishIcon from '@mui/icons-material/Publish';
+import Grid from '@mui/material/Grid';
 
 function RecipeForm(){
     const dispatch = useDispatch();
@@ -40,7 +41,16 @@ function RecipeForm(){
 
     return(
         <div>
+            <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            // style={{ minHeight: '100vh' }}>
+            >
             <Typography variant="h6">Add your recipe to the kitchen!</Typography>
+            </Grid>
             <form 
             className="recipeForm"
             onSubmit={addNewRecipe}>
@@ -54,6 +64,7 @@ function RecipeForm(){
                 <TextField
                     variant="outlined"
                     label="Upload your photo here!"
+                    helperText="-Make sure it's a url! :D"
                     fullWidth
                     type="url"
                     value={newRecipe.image}
@@ -73,7 +84,8 @@ function RecipeForm(){
                 <div>
                 <TextField
                     variant="outlined"
-                    label="Cook Time - How long will it take? (min)"
+                    label="Cook Time "
+                    helperText="- How long will it take? (min)"
                     fullWidth
                     type="text"
                     value={newRecipe.time}
@@ -83,7 +95,8 @@ function RecipeForm(){
                 <div>
                 <TextField
                     variant="outlined"
-                    label="Overview - Sell your recipe, what is it about? ✨"
+                    label="Overview"
+                    helperText="- Sell your recipe, what is it about? ✨"
                     fullWidth
                     multiline={true}
                     rows={5}
@@ -95,7 +108,8 @@ function RecipeForm(){
                 <div>
                 <TextField
                     variant="outlined"
-                    label="Ingredients - What should i get from my kitchen? "
+                    label="Ingredients "
+                    helperText="- What should i get from my kitchen?"
                     fullWidth
                     multiline={true}
                     rows={10}
@@ -107,7 +121,8 @@ function RecipeForm(){
                 <div>
                 <TextField
                     variant="outlined"
-                    label="Instructions - Now, what do I need to do? 1️⃣"
+                    label="Instructions"
+                    helperText="- Remember to number your steps!"
                     fullWidth 
                     multiline={true}
                     rows={10}
@@ -116,6 +131,12 @@ function RecipeForm(){
                     onChange={(event) => handleInputChange(event, 'instructions')}/>
                 </div>
                 <br></br>
+                <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justifyContent="center">
                 <Button 
                 variant="contained"
                 className= "btn"
@@ -124,6 +145,7 @@ function RecipeForm(){
                 value='Add New Recipe'
                 endIcon={<PublishIcon/>}
                 >Submit Recipe!</Button>
+                </Grid>
                 </Box>
             </form>
             <BottomNav/>
