@@ -31,6 +31,7 @@ function Details() {
     <div>
       <Button
       size="small"
+      variant="contained"
       onClick={() => {history.push('/home')}}
       startIcon={<ArrowBackIosNewIcon/>}>BACK</Button>
       <div className="">
