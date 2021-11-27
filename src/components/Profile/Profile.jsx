@@ -16,6 +16,8 @@ import Paper from "@mui/material/Paper";
 import { Container } from "@mui/material";
 
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import CancelIcon from '@mui/icons-material/Cancel';
 import EditIcon from "@mui/icons-material/Edit";
 import { Button } from "@mui/material";
 import { IconButton } from "@mui/material";
@@ -25,6 +27,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+
 
 function Profile() {
   const dispatch = useDispatch();
@@ -124,16 +127,17 @@ function Profile() {
                     <Button 
                     variant="contained" 
                     color="error"
-                    onClick={handleClose}>No</Button>
+                    onClick={handleClose}
+                    endIcon={<CancelIcon/>}>Cancel</Button>
 
                     <Button 
                     variant="contained" 
                     color="success"
                     onClick={() => handleDelete(recipe)} 
                     autoFocus
-                    endIcon={<DeleteForeverIcon/>}
+                    endIcon={<DeleteOutlineIcon/>}
                     >
-                      Yes
+                      Delete
                     </Button>
                   </DialogActions>
                 </Dialog>

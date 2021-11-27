@@ -7,6 +7,8 @@ import { TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 import { Button } from "@mui/material";
+
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import PublishIcon from '@mui/icons-material/Publish';
 import Grid from '@mui/material/Grid';
 
@@ -145,6 +147,13 @@ function RecipeForm(){
                 value='Add New Recipe'
                 endIcon={<PublishIcon/>}
                 >Submit Recipe!</Button>
+                <Button
+                sx={{
+                    mt: 2
+                }}
+                variant="contained"
+                startIcon={<ArrowBackIosNewIcon/>}
+                onClick={() => {history.push('/home')}}>GO BACK</Button>
                 </Grid>
                 </Box>
             </form>
