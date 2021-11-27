@@ -95,7 +95,7 @@ function Profile() {
                         readOnly
                       />
                     </TableCell>
-                    <TableCell align="right">{recipe.time}</TableCell>
+                    <TableCell align="left">{recipe.time}</TableCell>
                     <IconButton
                       onClick={() => history.push(`/edit/${recipe.id}`)}
                     >
@@ -130,7 +130,9 @@ function Profile() {
                     variant="contained" 
                     color="success"
                     onClick={() => handleDelete(recipe)} 
-                    autoFocus>
+                    autoFocus
+                    endIcon={<DeleteForeverIcon/>}
+                    >
                       Yes
                     </Button>
                   </DialogActions>
