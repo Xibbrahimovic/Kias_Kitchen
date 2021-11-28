@@ -38,7 +38,7 @@ function Details() {
         <img 
           src={recipe.image} 
           alt={recipe.name} 
-          height="375px"
+          height="325px"
           width="375px"
           />
         <div>

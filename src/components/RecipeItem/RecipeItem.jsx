@@ -15,6 +15,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
+import Grid from '@mui/material/Grid';
 import { pink } from "@mui/material/colors";
 
 function RecipeItem({ recipe, favid }) {
@@ -51,9 +52,11 @@ function RecipeItem({ recipe, favid }) {
     <Card
       className="recipeCard"
       style={{
-        backgroundColor: "",
+        backgroundColor: "red"
       }}
-      sx={{ maxWidth: 370, mb: 1 }}
+      sx={{ 
+        maxWidth: 375, 
+        mb: 1,}}
       key={recipe.id}
     >
       <Card>
@@ -64,35 +67,65 @@ function RecipeItem({ recipe, favid }) {
           src={recipe.image}
           alt={recipe.name}
         />
+
         <CardContent>
-          <Typography className="caption" variant="caption">
-            {recipe.name}
-          </Typography>
+        <Grid 
+        container 
+        spacing={{ xs: 1, md: 3 }} 
+        columns={{ xs: 4, sm: 8, md: 12 }}>
+          <Grid 
+          item xs 
+          container 
+          direction="column" 
+          spacing={1}
+          justify="flex-end">
+            <Grid item xs
+            rowSpacing={2}>
+              <Typography 
+              className="caption" 
+              variant="caption h6">
+                {recipe.name}
+              </Typography>
+            </Grid>
 
-          <Typography
-            sx={{
-              mx: 5,
-            }}
-            className="caption"
-            variant="caption"
-          >
-            Cook Time: {recipe.time} min
-          </Typography>
+          <Grid item xs>
+              <Typography
+                className="caption"
+                variant="caption h6"
+              >
+              Cook Time: {recipe.time} min
+              </Typography>
+          </Grid>
+          </Grid>
 
-          <Rating
-            name="half-rating"
-            precision={0.25}
-            value={recipe.recipe_rating}
-            readOnly
-          />
-        {favid 
-        ? <IconButton onClick={deleteFavorite}>
-            <FavoriteIcon
-            sx={{ color: pink[400] }}/>
-        </IconButton>
-        :<IconButton onClick={addFavorite}>
-            <FavoriteBorderOutlinedIcon/>
-        </IconButton>}
+
+          <Grid 
+            item xs 
+            container 
+            direction="column" 
+            spacing={1}
+            alignContent="flex-end">
+            <Grid item xs >
+            <Rating
+              name="half-rating"
+              precision={0.25}
+              value={recipe.recipe_rating}
+              readOnly
+            />
+            </Grid>
+              <Grid item xs
+              justifyContent="flex-end">
+              {favid 
+              ? <IconButton onClick={deleteFavorite}>
+                  <FavoriteIcon
+                  sx={{ color: pink[400] }}/>
+              </IconButton>
+              :<IconButton onClick={addFavorite}>
+                  <FavoriteBorderOutlinedIcon/>
+              </IconButton>}
+            </Grid>
+          </Grid>
+        </Grid>
         </CardContent>
       </Card>
 
