@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 
+import Grid from '@mui/material/Grid';
+import { Paper } from "@mui/material";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { Button } from "@mui/material";
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
+import { makeStyles } from "@mui/styles";
 
 function Details() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -19,6 +22,13 @@ function Details() {
 
   const [value, setValue] = useState(recipe.recipe_rating);
 
+  const useStyles = makeStyles({
+    recipePaper:{
+      backgroundColor: "#B7E9FF"
+    }
+});
+
+  const classes = useStyles();
 
   useEffect(() => {
       dispatch({type: 'FETCH_REVIEW_COUNT', payload: recipe.id });
@@ -31,19 +41,21 @@ function Details() {
     <div>
       <Button
       size="small"
-      variant="contained"
+      variant="filled"
       onClick={() => {history.push('/home')}}
       startIcon={<ArrowBackIosNewIcon/>}>BACK</Button>
-      <div className="">
+      <div>
+      <Paper className={classes.recipePaper} sx={{ p: 2, margin: 'auto', maxWidth: 500, flexGrow: 1 }}>
         <img 
           src={recipe.image} 
           alt={recipe.name} 
-          height="325px"
+          height="300px"
           width="375px"
           />
         <div>
-            <h2>{recipe.name}</h2>
-            <p>{recipe.time} minutes</p>
+            <Typography variant="h4">{recipe.name}</Typography>
+            <Typography 
+            sx={{ fontWeight: 'light' }}variant="h6">{recipe.time} minutes</Typography>
 
             <Rating
               name="simple-controlled"
@@ -55,17 +67,27 @@ function Details() {
               }}
             />
             <Typography
+            sx={{ fontStyle: 'italic', fontWeight: 'light'}}
             onClick={() => history.push(`/reviews/${recipe.id}`)}
             >( {reviewsCount} ) Reviews</Typography>
             
 
-            <h2>Overview</h2>
-            <p>{recipe.overview}</p>
-            <h2>Ingredients</h2>
-            <p>{recipe.ingredients}</p>
-            <h2>Instructions</h2>
-            <p>{recipe.instructions}</p>
+            <Typography variant="h4">Overview</Typography>
+            
+            <Typography 
+            sx={{ fontWeight: 'light' }}variant="h6">{recipe.overview}</Typography>
+            
+            <Typography variant="h4">Ingredients</Typography>
+            
+            <Typography 
+            sx={{ fontWeight: 'light' }}variant="h6">{recipe.ingredients}</Typography>
+            
+            <Typography variant="h4">Instructions</Typography>
+            
+            <Typography 
+            sx={{ fontWeight: 'light' }}variant="h6">{recipe.instructions}</Typography>
         </div>
+        </Paper>
       </div>
     </div>
   );

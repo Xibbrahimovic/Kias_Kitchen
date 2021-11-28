@@ -21,11 +21,15 @@ const theme = createTheme({
     h1: {color: '#00000', fontWeight: 'normal',fontFamily: "'Comfortaa'" },
     h2: {color: '#00000', fontWeight: 'bold', fontFamily: "'Comfortaa'" },
     h3: {color: '#00000', fontWeight: 'bold', fontFamily: "'Comfortaa'" },
-    h4: {color: '#00000', fontWeight: 'bold', fontFamily: "'Comfortaa'" },
-    h5: {color: '#00000', fontWeight: 'bold', fontFamily: "'Comfortaa'" },
-    h6: {color: '#00000', fontWeight: 'bold', fontFamily: "'Comfortaa'" },
-  }
+    h4: {color: '#00000', fontWeight: 'light', fontFamily: "'Comfortaa'" },
+    h5: {color: '#00000', fontWeight: 'light', fontFamily: "'Comfortaa'" },
+    h6: {color: '#00000', fontWeight: 'light', fontFamily: "'Comfortaa'" },
+  },
+  // recipePaper: {
+  //   backgroundColor: "primary"
+  // }
 })
+
 
 
 ReactDOM.render(
