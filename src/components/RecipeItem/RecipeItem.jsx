@@ -103,7 +103,7 @@ function RecipeItem({ recipe, favid }) {
                 variant="caption h6"
                 sx={{ fontWeight: 'medium' }}
               >
-              Cook Time:
+              Total Cook Time:
               </Typography>
               </Grid>
               <Grid item xs>

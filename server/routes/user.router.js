@@ -15,12 +15,17 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
-//fetches user recipes based on ID
+//PROFILE : fetches user recipes based on user ID
 router.get("/recipes", rejectUnauthenticated, (req, res) => {
   let queryText = `
   SELECT recipes.id,
   recipes.name,
+  recipes.image,
   recipes.time,
+  recipes.overview,
+  recipes.ingredients, 
+  recipes.instructions,
+  COUNT("rating") as review_count,
   AVG(COALESCE(ratings.rating, 0))::NUMERIC(10,1) AS recipe_rating FROM "recipes"
 LEFT JOIN "ratings" ON ratings.recipes_id = recipes.id
 WHERE "recipes"."user_id" = $1

@@ -49,6 +49,15 @@ function Profile() {
   const userRecipes = useSelector((store) => store.userRecipes);
   const [open, setOpen] = React.useState(false);
 
+
+  //click handlers//
+  const toDetails = (recipe) => {
+    //dispatching recipe as object to details reducer
+    dispatch({ type: "STORE_DETAILS", payload: recipe }),
+      //navigate to details page
+      history.push("/details");
+  };
+
   const handleClickOpen = (recipe) => {
     setOpen(true);
   };
@@ -113,20 +122,22 @@ function Profile() {
                 {userRecipes.map((recipe) => (
                   <>
                   <TableRow key={recipe.id}>
-                    <TableCell component="th" scope="row">
+                    <TableCell onClick={() => toDetails(recipe)} component="th" scope="row">
                       {recipe.name}
                     </TableCell>
-                    <TableCell 
-                    className={classes.tableCell}align="left">
+                    <TableCell className={classes.tableCell}align="left">
                       <Rating
                         name="half-rating"
                         precision={0.25}
                         value={recipe.recipe_rating}
                         readOnly
                       />
+                      <Typography
+                        sx={{ fontStyle: 'italic', fontWeight: 'light'}}
+                        onClick={() => history.push(`/reviews/${recipe.id}`)}
+                        >( {recipe.review_count} ) Reviews</Typography>
                     </TableCell>
-                    <TableCell
-                    className={classes.tableCell} align="left">{recipe.time}</TableCell>
+                    <TableCell className={classes.tableCell} align="left">{recipe.time}</TableCell>
                     <IconButton
                       onClick={() => history.push(`/edit/${recipe.id}`)}
                     >
@@ -139,10 +150,10 @@ function Profile() {
                     </IconButton>
                   </TableRow>
                   <Dialog
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="alert-dialog-title"
-                  aria-describedby="alert-dialog-description"
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
                   >
                   <DialogTitle id="alert-dialog-title">
                     {"Delete your recipe?"}

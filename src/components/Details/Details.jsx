@@ -75,10 +75,14 @@ function Details() {
                 history.push(`/review/${recipe.id}`);
               }}
             />
-            <Typography
+            {reviewsCount >= 1 ? <Typography
             sx={{ fontStyle: 'italic', fontWeight: 'light'}}
             onClick={() => history.push(`/reviews/${recipe.id}`)}
-            >( {reviewsCount} ) Reviews</Typography>
+            >( {reviewsCount} ) Review(s)</Typography>
+            : <Typography
+            sx={{ fontStyle: 'italic', fontWeight: 'light'}}
+            onClick={() => history.push(`/reviews/${recipe.id}`)}
+            >Be the first to review!</Typography>}
             
 
             <Typography variant="h4">Overview</Typography>
