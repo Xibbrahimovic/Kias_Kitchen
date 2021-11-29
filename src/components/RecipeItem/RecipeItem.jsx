@@ -61,7 +61,7 @@ function RecipeItem({ recipe, favid }) {
       className={classes.recipeCard}
       sx={{ 
         maxWidth: 375, 
-        mb: 1,}}
+        mb: 2,}}
       key={recipe.id}
     >
       <Card
@@ -101,7 +101,7 @@ function RecipeItem({ recipe, favid }) {
           <Typography
                 className="caption"
                 variant="caption h6"
-                sx={{ fontWeight: 'bold' }}
+                sx={{ fontWeight: 'medium' }}
               >
               Cook Time:
               </Typography>

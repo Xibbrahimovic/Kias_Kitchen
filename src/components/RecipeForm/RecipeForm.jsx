@@ -13,12 +13,12 @@ import PublishIcon from "@mui/icons-material/Publish";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
 import { Paper } from "@mui/material";
-import { createTheme } from "@mui/material";
+
 
 function RecipeForm() {
   const dispatch = useDispatch();
   const history = useHistory();
-const theme = createTheme();
+
   const useStyles = makeStyles({
     backBtn:{
         backgroundColor: "#FFB7C5"
@@ -26,7 +26,7 @@ const theme = createTheme();
     formHeaderPaper:{
         backgroundColor: "#FFB7C5",
         marginTop: 10,
-        marginBottom: 10,
+        marginBottom: 20,
     },
     root: {
         "& .MuiOutlinedInput-root": {
@@ -37,11 +37,12 @@ const theme = createTheme();
 });
   const classes = useStyles();
 
+  
   let base = {
-    image: "",
-    name: "",
-    time: "",
-    overview: "",
+    image: "https://soupeduprecipes.com/wp-content/uploads/2019/08/chinese-egg-rolls-500x375.png",
+    name: "Egg Rolls",
+    time: "90",
+    overview: "The staple appetizer to all of Asia",
     ingredients: "",
     instructions: "",
   };
@@ -71,11 +72,10 @@ const theme = createTheme();
         direction="column"
         alignItems="center"
         justifyContent="center"
-        // style={{ minHeight: '100vh' }}>
       >
         <Paper
         className={classes.formHeaderPaper}>
-        <Typography variant="h6">Add your recipe to the kitchen!</Typography>
+        <Typography variant="h5">Add your recipe to the kitchen!</Typography>
         </Paper>
       </Grid>
       <form className="recipeForm" onSubmit={addNewRecipe}>

@@ -27,11 +27,23 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { makeStyles } from "@mui/styles";
 
 
 function Profile() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const useStyles = makeStyles({
+    formHeaderPaper:{
+      backgroundColor: "#FFB7C5",
+      marginBottom: 10,
+  },
+    tableCell:{
+      padding: "0px 8px"
+    }
+});
+  const classes = useStyles();
+
   const user = useSelector((store) => store.user);
   //Access the store where the recipes are
   const userRecipes = useSelector((store) => store.userRecipes);
@@ -60,8 +72,19 @@ function Profile() {
 
   return (
     <div className="container">
-      <Typography variant="h5">Hello, {user.username}!</Typography>
-      <Typography variant="h5">Your Recipes List</Typography>
+      <Paper
+      className={classes.formHeaderPaper}>
+      <Typography 
+      sx={{
+        ml: 2
+      }}
+      variant="h5">Hello, {user.username}!</Typography>
+      <Typography
+      sx={{
+        ml: 2
+      }} 
+      variant="h4">Your Recipes List</Typography>
+      </Paper>
       <br></br>
       {userRecipes.length === 0 ? (
         <Typography>
@@ -77,9 +100,12 @@ function Profile() {
               </caption>
               <TableHead>
                 <TableRow>
-                  <TableCell>Recipe Name</TableCell>
+                  <TableCell
+                  >Recipe Name</TableCell>
                   <TableCell align="left">Rating</TableCell>
-                  <TableCell align="left">Cook Time(min)</TableCell>
+                  <TableCell 
+                  className={classes.tableCell}
+                  align="left">Cook Time(min)</TableCell>
                   <TableCell align="center"></TableCell>
                 </TableRow>
               </TableHead>
@@ -90,7 +116,8 @@ function Profile() {
                     <TableCell component="th" scope="row">
                       {recipe.name}
                     </TableCell>
-                    <TableCell align="left">
+                    <TableCell 
+                    className={classes.tableCell}align="left">
                       <Rating
                         name="half-rating"
                         precision={0.25}
@@ -98,7 +125,8 @@ function Profile() {
                         readOnly
                       />
                     </TableCell>
-                    <TableCell align="left">{recipe.time}</TableCell>
+                    <TableCell
+                    className={classes.tableCell} align="left">{recipe.time}</TableCell>
                     <IconButton
                       onClick={() => history.push(`/edit/${recipe.id}`)}
                     >

@@ -9,12 +9,26 @@ import { Button } from "@mui/material";
 import SaveIcon from '@mui/icons-material/Save';
 import { Typography } from "@mui/material";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { makeStyles } from "@mui/styles";
 
 function EditRecipe(){
     const dispatch = useDispatch();
     const {recipe_id} = useParams();
     const history = useHistory();
     const recipeList = useSelector((store) => store.home);
+    const useStyles = makeStyles({
+        backBtn:{
+            backgroundColor: "#FFB7C5",
+            ml: 5,
+        },
+        root: {
+            "& .MuiOutlinedInput-root": {
+              background: "rgb(255, 255, 255)",
+              borderColor: "#5fa9c9"
+            }
+          }
+    });
+    const classes = useStyles();
 
     let [editRecipe, setEditRecipe] = useState({});
 
@@ -57,6 +71,11 @@ function EditRecipe(){
             <Typography
             variant="h6">Make sure to save your changes!</Typography>
             <Button
+            sx={{
+                my: 1,
+                ml: 1,
+              }}
+            className={classes.backBtn}
             variant="contained"
             startIcon={<ArrowBackIosNewIcon/>}
             onClick={() => {history.push('/profile')}}>GO BACK</Button>
@@ -73,6 +92,7 @@ function EditRecipe(){
                 }}>
                 <div>
                 <TextField
+                    className={classes.root}
                     label="Upload your photo here!"
                     fullWidth 
                     variant="outlined"
@@ -84,6 +104,7 @@ function EditRecipe(){
                 <br></br>
                 <div>
                 <TextField
+                    className={classes.root}
                     label="Recipe Name"
                     fullWidth 
                     variant="outlined"
@@ -95,6 +116,7 @@ function EditRecipe(){
                 <br></br>
                 <div>
                 <TextField
+                    className={classes.root}
                     label="Cook Time - How long will it take? (min)"
                     fullWidth 
                     variant="outlined"
@@ -106,6 +128,7 @@ function EditRecipe(){
                 <br></br>
                 <div>
                 <TextField
+                    className={classes.root}
                     variant="outlined"
                     label="Overview - Sell your recipe, what is it about? ✨"
                     fullWidth 
@@ -119,6 +142,7 @@ function EditRecipe(){
                 <br></br>
                 <div>
                 <TextField
+                    className={classes.root}
                     variant="outlined"
                     label="Ingredients - What should i get from my kitchen? "
                     fullWidth
@@ -132,6 +156,7 @@ function EditRecipe(){
                 <br></br>
                 <div>
                 <TextField
+                    className={classes.root}
                     variant="outlined"
                     label="Instructions - Now, what do I need to do? 1️⃣"
                     fullWidth 
