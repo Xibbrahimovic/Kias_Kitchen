@@ -31,6 +31,9 @@ function Reviews(){
             marginTop: 10,
             marginBottom: 20,
         },
+        paper:{
+            backgroundColor: "#B7E9FF"
+        },
         root: {
             "& .MuiOutlinedInput-root": {
               background: "rgb(255, 255, 255)",
@@ -62,14 +65,16 @@ function Reviews(){
                 size="small"
                 onClick={() => history.push('/home')}
                 startIcon={<ArrowBackIosNewIcon/>}>BACK</Button>
-                <Paper>
+                <Paper className={classes.formHeaderPaper}>
             <Typography variant="h5">Here's what the community kitchens thought about this dish!</Typography>
             </Paper>
             {reviews.map(review => {
                 return(
                     <Paper
+                        className={classes.paper}
                         elevation={3}>
                         <ReviewItem
+                            className=""
                             sx={{
                                 my: '5'
                             }}
@@ -79,8 +84,14 @@ function Reviews(){
                     </Paper>
                     )
             })}
-            <Typography variant="h5">Post your own review!</Typography>
+            <Typography 
+            sx={{
+                mb: 2,
+                mt: 2,
+            }}
+            variant="h5">Post your own review!</Typography>
             <Button
+                
                 onClick={() => history.push(`/review/${recipe_id}`)}
                 variant="contained"
                 className="btn"

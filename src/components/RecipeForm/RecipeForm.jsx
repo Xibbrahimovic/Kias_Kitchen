@@ -14,37 +14,38 @@ import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
 import { Paper } from "@mui/material";
 
-
 function RecipeForm() {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const useStyles = makeStyles({
-    backBtn:{
-        backgroundColor: "#FFB7C5"
+    backBtn: {
+      backgroundColor: "#FFB7C5",
     },
-    formHeaderPaper:{
-        backgroundColor: "#FFB7C5",
-        marginTop: 10,
-        marginBottom: 20,
+    formHeaderPaper: {
+      backgroundColor: "#FFB7C5",
+      marginTop: 10,
+      marginBottom: 20,
     },
     root: {
-        "& .MuiOutlinedInput-root": {
-          background: "rgb(255, 255, 255)",
-          borderColor: "#5fa9c9"
-        }
-      }
-});
+      "& .MuiOutlinedInput-root": {
+        background: "rgb(255, 255, 255)",
+        borderColor: "#5fa9c9",
+      },
+    },
+  });
   const classes = useStyles();
 
-  
   let base = {
-    image: "https://soupeduprecipes.com/wp-content/uploads/2019/08/chinese-egg-rolls-500x375.png",
+    image:
+      "https://soupeduprecipes.com/wp-content/uploads/2019/08/chinese-egg-rolls-500x375.png",
     name: "Egg Rolls",
     time: "90",
     overview: "The staple appetizer to all of Asia",
-    ingredients: "",
-    instructions: "",
+    ingredients:
+      "3 lbs protein of choice, or none at all mung bean thread noodles 5 cups of shredded cabbage and carrots 1 tbsp of minced garlic 1 cup of fresh or soaked finely chopped black fungus ( optional) 1 dozen eggs 1/3 cup of oyster mushroom 3 tbsp of black pepper 1 1/2 cup of potatoe flakes Oil for frying",
+    instructions:
+      "Soak and drain the mung bean noodles.  cut the noodles. set it into a large bowl. Add in all the ingredients.  using only 7-9 eggs only.  save the rest for wrapping. Step 2:	Set up wrapping station, unwrap, peel each of the wrappers onto a large plate.	Step 3:	take one sheet of the wrapper, set it on a different area, fill it up with the one spoon of fillings, lenghtwise, from one corner to the other corner.  fold the bottom corner up then fold the two side corners in.  finish the wrapping by brush eggs on the last corner to hold the roll.  repeat until all fillings and wraps are done.	Step 4:	heat up oil to 425 degrees, slowly dip the egg rolls into the wok/pan of heated oil. cook until slightly golden. about 15 minutes on meduim to high heat.	Serve with choice of sauce"
   };
 
   //Initial state is an object, with all the different input values set to empty
@@ -60,7 +61,7 @@ function RecipeForm() {
     event.preventDefault();
     //sends over new object to saga/server to process and send to DB
     dispatch({ type: "ADD_RECIPE", payload: newRecipe });
-    // setRecipe(base);
+    history.push('/home');
   };
   console.log(newRecipe);
 
@@ -73,9 +74,8 @@ function RecipeForm() {
         alignItems="center"
         justifyContent="center"
       >
-        <Paper
-        className={classes.formHeaderPaper}>
-        <Typography variant="h5">Add your recipe to the kitchen!</Typography>
+        <Paper className={classes.formHeaderPaper}>
+          <Typography variant="h5">Add your recipe to the kitchen!</Typography>
         </Paper>
       </Grid>
       <form className="recipeForm" onSubmit={addNewRecipe}>
@@ -88,7 +88,7 @@ function RecipeForm() {
         >
           <div>
             <TextField
-                className={classes.root}
+              className={classes.root}
               variant="outlined"
               label="Upload your photo here!"
               helperText="-Make sure it's a url! :D"
@@ -101,7 +101,7 @@ function RecipeForm() {
           <br></br>
           <div>
             <TextField
-            className={classes.root}
+              className={classes.root}
               variant="outlined"
               label="Recipe Name "
               fullWidth
@@ -113,7 +113,7 @@ function RecipeForm() {
           <br></br>
           <div>
             <TextField
-            className={classes.root}
+              className={classes.root}
               variant="outlined"
               label="Cook Time "
               helperText="- How long will it take? (min)"
@@ -126,7 +126,7 @@ function RecipeForm() {
           <br></br>
           <div>
             <TextField
-            className={classes.root}
+              className={classes.root}
               variant="outlined"
               label="Overview"
               helperText="- Sell your recipe, what is it about? ✨"
@@ -141,7 +141,7 @@ function RecipeForm() {
           <br></br>
           <div>
             <TextField
-            className={classes.root}
+              className={classes.root}
               variant="outlined"
               label="Ingredients "
               helperText="- What should i get from my kitchen?"
@@ -156,7 +156,7 @@ function RecipeForm() {
           <br></br>
           <div>
             <TextField
-            className={classes.root}
+              className={classes.root}
               variant="outlined"
               label="Instructions"
               helperText="- Remember to number your steps!"
@@ -187,7 +187,7 @@ function RecipeForm() {
               Submit Recipe!
             </Button>
             <Button
-            className={classes.backBtn}
+              className={classes.backBtn}
               sx={{
                 mt: 2,
               }}

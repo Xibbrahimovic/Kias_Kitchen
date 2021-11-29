@@ -45,7 +45,10 @@ function Favorites() {
         </Paper>
         {/* conditional renders to see if any recipes exist on this list */}
         {favorites.length === 0 ? (
-          <Typography>You don't have any favorites yet! 🥲</Typography>
+          <>
+          <Typography variant="h5">You don't have any favorites yet 🥲 </Typography>
+          <Typography variant="h5">Go back to Home page and heart a recipe! </Typography>
+          </>
         ) : (
           favorites.map((recipe) => {
             return (
