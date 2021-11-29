@@ -17,11 +17,19 @@ import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import Grid from '@mui/material/Grid';
 import { pink } from "@mui/material/colors";
+import { makeStyles } from "@mui/styles";
 
 function RecipeItem({ recipe, favid }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [open, setOpen] = useState(false);
+
+  const useStyles = makeStyles({
+    recipeCard:{
+      backgroundColor: "#B7E9FF"
+    }
+});
+  const classes = useStyles();
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -50,16 +58,15 @@ function RecipeItem({ recipe, favid }) {
 
   return (
     <Card
-      className="recipeCard"
-      style={{
-        backgroundColor: "red"
-      }}
+      className={classes.recipeCard}
       sx={{ 
         maxWidth: 375, 
         mb: 1,}}
       key={recipe.id}
     >
-      <Card>
+      <Card
+      className={classes.recipeCard}>
+      
         <CardMedia
           onClick={toDetails}
           component="img"
@@ -74,26 +81,38 @@ function RecipeItem({ recipe, favid }) {
         spacing={{ xs: 1, md: 3 }} 
         columns={{ xs: 4, sm: 8, md: 12 }}>
           <Grid 
-          item xs 
-          container 
-          direction="column" 
-          spacing={1}
-          justify="flex-end">
-            <Grid item xs
+            item xs 
+            container 
+            direction="column" 
+            spacing={1}
+            justify="flex-end">
+          <Grid 
+            item xs
             rowSpacing={2}>
               <Typography 
-              className="caption" 
-              variant="caption h6">
+                className="caption" 
+                variant="caption h6"
+                sx={{ fontWeight: 'bold' }}>
                 {recipe.name}
               </Typography>
             </Grid>
 
           <Grid item xs>
+          <Typography
+                className="caption"
+                variant="caption h6"
+                sx={{ fontWeight: 'bold' }}
+              >
+              Cook Time:
+              </Typography>
+              </Grid>
+              <Grid item xs>
               <Typography
                 className="caption"
                 variant="caption h6"
+                sx={{ fontWeight: 'light' }}
               >
-              Cook Time: {recipe.time} min
+              {recipe.time} min
               </Typography>
           </Grid>
           </Grid>

@@ -25,6 +25,9 @@ function Details() {
   const useStyles = makeStyles({
     recipePaper:{
       backgroundColor: "#B7E9FF"
+    },
+    backBtn:{
+      backgroundColor: "#FFB7C5"
     }
 });
 
@@ -40,8 +43,13 @@ function Details() {
     // INSERT Header for Home page here
     <div>
       <Button
+      sx={{
+        my: 1,
+        ml: 1,
+      }}
+      className={classes.backBtn}
       size="small"
-      variant="filled"
+      variant="contained"
       onClick={() => {history.push('/home')}}
       startIcon={<ArrowBackIosNewIcon/>}>BACK</Button>
       <div>
