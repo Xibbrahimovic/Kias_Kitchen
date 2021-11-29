@@ -28,7 +28,8 @@ function Details() {
     },
     backBtn:{
       backgroundColor: "#FFB7C5"
-    }
+    },
+    
 });
 
   const classes = useStyles();

@@ -12,15 +12,28 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import PublishIcon from "@mui/icons-material/Publish";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
+import { Paper } from "@mui/material";
+import { createTheme } from "@mui/material";
 
 function RecipeForm() {
   const dispatch = useDispatch();
   const history = useHistory();
-
+const theme = createTheme();
   const useStyles = makeStyles({
     backBtn:{
-      backgroundColor: "#FFB7C5"
-    }
+        backgroundColor: "#FFB7C5"
+    },
+    formHeaderPaper:{
+        backgroundColor: "#FFB7C5",
+        marginTop: 10,
+        marginBottom: 10,
+    },
+    root: {
+        "& .MuiOutlinedInput-root": {
+          background: "rgb(255, 255, 255)",
+          borderColor: "#5fa9c9"
+        }
+      }
 });
   const classes = useStyles();
 
@@ -60,7 +73,10 @@ function RecipeForm() {
         justifyContent="center"
         // style={{ minHeight: '100vh' }}>
       >
+        <Paper
+        className={classes.formHeaderPaper}>
         <Typography variant="h6">Add your recipe to the kitchen!</Typography>
+        </Paper>
       </Grid>
       <form className="recipeForm" onSubmit={addNewRecipe}>
         <Box
@@ -72,6 +88,7 @@ function RecipeForm() {
         >
           <div>
             <TextField
+                className={classes.root}
               variant="outlined"
               label="Upload your photo here!"
               helperText="-Make sure it's a url! :D"
@@ -84,6 +101,7 @@ function RecipeForm() {
           <br></br>
           <div>
             <TextField
+            className={classes.root}
               variant="outlined"
               label="Recipe Name "
               fullWidth
@@ -95,6 +113,7 @@ function RecipeForm() {
           <br></br>
           <div>
             <TextField
+            className={classes.root}
               variant="outlined"
               label="Cook Time "
               helperText="- How long will it take? (min)"
@@ -107,6 +126,7 @@ function RecipeForm() {
           <br></br>
           <div>
             <TextField
+            className={classes.root}
               variant="outlined"
               label="Overview"
               helperText="- Sell your recipe, what is it about? ✨"
@@ -121,6 +141,7 @@ function RecipeForm() {
           <br></br>
           <div>
             <TextField
+            className={classes.root}
               variant="outlined"
               label="Ingredients "
               helperText="- What should i get from my kitchen?"
@@ -135,6 +156,7 @@ function RecipeForm() {
           <br></br>
           <div>
             <TextField
+            className={classes.root}
               variant="outlined"
               label="Instructions"
               helperText="- Remember to number your steps!"
