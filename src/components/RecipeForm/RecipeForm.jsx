@@ -18,6 +18,8 @@ function RecipeForm() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const parseLines = (value) => value.replace(/(\\n)/g, "\n");
+
   const useStyles = makeStyles({
     backBtn: {
       backgroundColor: "#FFB7C5",
@@ -37,17 +39,16 @@ function RecipeForm() {
   const classes = useStyles();
 
   let base = {
-    image:
-      "https://soupeduprecipes.com/wp-content/uploads/2019/08/chinese-egg-rolls-500x375.png",
-    name: "Egg Rolls",
-    time: "90",
-    overview: "The staple appetizer to all of Asia",
-    ingredients:
-      "3 lbs protein of choice, or none at all mung bean thread noodles 5 cups of shredded cabbage and carrots 1 tbsp of minced garlic 1 cup of fresh or soaked finely chopped black fungus ( optional) 1 dozen eggs 1/3 cup of oyster mushroom 3 tbsp of black pepper 1 1/2 cup of potatoe flakes Oil for frying",
-    instructions:
-      "Soak and drain the mung bean noodles.  cut the noodles. set it into a large bowl. Add in all the ingredients.  using only 7-9 eggs only.  save the rest for wrapping. Step 2:	Set up wrapping station, unwrap, peel each of the wrappers onto a large plate.	Step 3:	take one sheet of the wrapper, set it on a different area, fill it up with the one spoon of fillings, lenghtwise, from one corner to the other corner.  fold the bottom corner up then fold the two side corners in.  finish the wrapping by brush eggs on the last corner to hold the roll.  repeat until all fillings and wraps are done.	Step 4:	heat up oil to 425 degrees, slowly dip the egg rolls into the wok/pan of heated oil. cook until slightly golden. about 15 minutes on meduim to high heat.	Serve with choice of sauce"
+    image:"",
+    name: "",
+    time: "",
+    overview: "",
+    ingredients:"",
+    instructions:""
   };
 
+
+  
   //Initial state is an object, with all the different input values set to empty
   let [newRecipe, setRecipe] = useState(base);
 
@@ -106,7 +107,7 @@ function RecipeForm() {
               label="Recipe Name "
               fullWidth
               type="text"
-              value={newRecipe.name}
+              value={parseLines(newRecipe.name)}
               onChange={(event) => handleInputChange(event, "name")}
             />
           </div>
@@ -149,7 +150,7 @@ function RecipeForm() {
               multiline={true}
               rows={10}
               type="text"
-              value={newRecipe.ingredients}
+              value={parseLines(newRecipe.ingredients)}
               onChange={(event) => handleInputChange(event, "ingredients")}
             />
           </div>

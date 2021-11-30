@@ -35,7 +35,10 @@ function AboutPage() {
         </Grid>
       </Grid>
         <Grid>
-          <Typography variant="h6">
+          <Typography 
+          sx={{
+            mx: 2
+          }}variant="h6">
               Our application was 
               inspired by Kia’s work in
               the kitchen throughout 
@@ -46,6 +49,10 @@ function AboutPage() {
               has kept recipes to which were not always 
               originals, but shared with her to create new 
               memories together. </Typography>
+          <Typography 
+          sx={{mx: 2, my: 2}}variant="h5" > Technologies Used:</Typography>
+          <Typography sx={{mx: 2, my: 1.75}}variant="h6" fontWeight="light">
+              React, Redux-Saga, Node.js, Express, Passport, PostgresQL, Material UI</Typography>
       </Grid>
       <BottomNav/>
     </Paper>

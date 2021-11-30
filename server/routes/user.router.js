@@ -241,14 +241,14 @@ router.delete("/deletefavorite:id", (req, res) => {
 router.delete("/:id", (req, res) => {
   console.log("user is", req.user.id);
 
-  console.log("comparing to recipes user id", req.params.id);
+  console.log("comparing to recipes.id", req.params.id);
   let id = req.params.id; //This our way of identifying the variable 'id' sent along with the route.
   let queryText = `
   DELETE FROM "recipes"
   WHERE id = $1 AND
   user_id = $2;`;
   //queryText is sql text that we want to transfer over to pool.
-  let values = [id, req.user.id];
+  let values = [33, req.user.id];
 
   //Package the queryText and the id to have pool interact with the database for us
   //and execute the intended goal which in this case is to delete the data at id

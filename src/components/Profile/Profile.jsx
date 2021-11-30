@@ -36,7 +36,7 @@ function Profile() {
   const useStyles = makeStyles({
     formHeaderPaper:{
       backgroundColor: "#FFB7C5",
-      marginBottom: 10,
+      marginBottom: 6,
   },
     tableCell:{
       padding: "0px 8px"
@@ -68,8 +68,9 @@ function Profile() {
 
   const handleDelete = (recipe) => {
     handleClose();
-    dispatch({ type: "DELETE_RECIPE", payload: recipe.id })
     console.log("this is handleDelete id", recipe.id);
+    dispatch({ type: "DELETE_RECIPE", payload: recipe.id })
+    
   }
 
   //populate the userRecipes store based on user ID
@@ -85,8 +86,7 @@ function Profile() {
       className={classes.formHeaderPaper}>
       <Typography 
       sx={{
-        ml: 2
-      }}
+        ml: 2}}
       variant="h5">Hello, {user.username}!</Typography>
       <Typography
       sx={{

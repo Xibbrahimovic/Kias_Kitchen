@@ -29,7 +29,7 @@ function* fetchUserRecipes() {
   try {
       const response = yield axios.get(`/api/user/recipes`);
       yield put({ type: 'SET_USER_RECIPES', payload: response.data });
-      console.log(response);
+      console.log(response.data);
   } catch (err) {
       yield put({ type: 'SET_USER_RECIPES_ERROR' });
       console.log(err);
@@ -50,7 +50,7 @@ function* addRecipe(action){
 function* deleteRecipe(action){
 try {
   const response = yield axios.delete(`/api/user/${action.payload}`);
-  console.log(action.payload);
+  console.log('action.payload', action.payload);
   console.log(response);
   yield put({type: 'FETCH_USER_RECIPES'})
 } catch (error) {

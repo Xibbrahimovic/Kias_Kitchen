@@ -16,7 +16,7 @@ function BottomNav(){
   const ref = React.useRef(null);
   const useStyles = makeStyles({
     bottomNav:{
-      backgroundColor: "#B7E9FF"
+      backgroundColor: "#FFB7C5"
     }
   });
   const classes = useStyles();
@@ -31,11 +31,11 @@ function BottomNav(){
       onChange={(event, newValue) => {
         setValue(newValue);
       }}>
-            <BottomNavigationAction component={Link} to="/home" label="Home" icon={<HomeIcon />} />
-            <BottomNavigationAction component={Link} to="/favorites" label="Favorites" icon={<FavoriteIcon />} />
-            <BottomNavigationAction component={Link} to="/form" label="Recipe" icon={<AddCircleIcon />} />
-            <BottomNavigationAction component={Link} to="/about" label="About" icon={<InfoIcon />} />
-            <BottomNavigationAction component={Link} to="/profile" label="Profile" icon={<PersonIcon />} />
+            <BottomNavigationAction component={Link} to="/home" icon={<HomeIcon color="disabled" />} />
+            <BottomNavigationAction component={Link} to="/favorites" label="Favorites" icon={<FavoriteIcon color="disabled"  />} />
+            <BottomNavigationAction component={Link} to="/form" label="Recipe" icon={<AddCircleIcon color="disabled" />} />
+            <BottomNavigationAction component={Link} to="/about" label="About" icon={<InfoIcon color="disabled"/>} />
+            <BottomNavigationAction component={Link} to="/profile"  icon={<PersonIcon color="disabled"/>} />
           </BottomNavigation>
         </Paper>
     );

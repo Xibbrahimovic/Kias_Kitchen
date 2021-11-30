@@ -25,6 +25,9 @@ const theme = createTheme({
     h5: {color: '#00000', fontWeight: 'light', fontFamily: "'Comfortaa'" },
     h6: {color: '#00000', fontWeight: 'light', fontFamily: "'Comfortaa'" },
   },
+  // "overrides":{
+  //   MuiSvg
+  // }
   // recipePaper: {
   //   backgroundColor: "primary"
   // }

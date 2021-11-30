@@ -55,10 +55,10 @@ function Reviews(){
     
 
     return(
-        <Container>
+        <Container sx={{mb: 5}}>
             <Button
                 sx={{
-                    my: 2,
+                    my: 1,
                 }}
                 className={classes.backBtn}
                 variant="contained"
@@ -91,7 +91,6 @@ function Reviews(){
             }}
             variant="h5">Post your own review!</Typography>
             <Button
-                
                 onClick={() => history.push(`/review/${recipe_id}`)}
                 variant="contained"
                 className="btn"
