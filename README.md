@@ -19,6 +19,7 @@ Full CRUD application for viewing Southeast Asian cuisines and getting a taste o
 
 ## Screenshots
 
+
 <img src="public/images/Home.png" />
 <img src="public/images/DetailsView.png"/>
 <img src="public/images/RecipeForm.png" />
@@ -28,19 +29,17 @@ Full CRUD application for viewing Southeast Asian cuisines and getting a taste o
 
 
 
-
 ## Getting Started
 
-What do I need to do or know before attempting to use your project
 
 ### Prerequisites
+
 
 Before you get started, make sure you have the following software installed on your computer:
 
 - [Node.js](https://nodejs.org/en/)
 - [PostrgeSQL](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
-
 
 ### Installation
 
@@ -64,3 +63,4 @@ I want to give a HUGE thanks to Prime Digital Academy and everyone who has suppo
 ## Contacts
 
 <a href="https://www.linkedin.com/in/kongxib-vue"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>  <a href="mailto:kongcvue@gmail.com"><img src=https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/email_me_button_icon_151852.svg /></a>
+
