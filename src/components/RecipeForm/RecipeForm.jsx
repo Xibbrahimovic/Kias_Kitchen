@@ -39,16 +39,14 @@ function RecipeForm() {
   const classes = useStyles();
 
   let base = {
-    image:"",
+    image: "",
     name: "",
     time: "",
     overview: "",
-    ingredients:"",
-    instructions:""
+    ingredients: "",
+    instructions: "",
   };
 
-
-  
   //Initial state is an object, with all the different input values set to empty
   let [newRecipe, setRecipe] = useState(base);
 
@@ -62,7 +60,7 @@ function RecipeForm() {
     event.preventDefault();
     //sends over new object to saga/server to process and send to DB
     dispatch({ type: "ADD_RECIPE", payload: newRecipe });
-    history.push('/home');
+    history.push("/home");
   };
   console.log(newRecipe);
 

@@ -257,9 +257,6 @@ router.delete("/:id", (req, res) => {
     .then((results) => {
       console.log("results is", results);
       if (results.rowCount === 0) {
-        //rowCount is a number that represents how many rows were found by query
-        //We created a conditional that checks to see if rowCount is equal to 0 if
-        //it is we send back a forbidden (403)
         res.sendStatus(403);
       } else {
         res.sendStatus(204); //if completed then we get a '204' which is thumbs up
